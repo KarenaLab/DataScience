@@ -66,17 +66,24 @@ def TurkeyOutliers(Data, Variable, **kwargs):
 
     # Separating Information
 
-    Possible_Outliers = []
     Probable_Outliers = []
 
+    if(Prob == True):
 
-    for index, x in enumerate(Data[Variable]):
+        for index, x in enumerate(Data[Variable]):
 
-        if(x <= Outer_Left or x >= Outer_Right):
-            Probable_Outliers.append(index)
+            if(x <= Outer_Left or x >= Outer_Right):
+                Probable_Outliers.append(index)
 
-        if(x <= Inner_Left or x >= Inner_Right):
-            Possible_Outliers.append(index)
+
+    Possible_Outliers = []
+
+    if(Poss == True):
+
+        for index, x in enumerate(Data[Variable]):
+
+            if(x <= Inner_Left or x >= Inner_Right):
+                Possible_Outliers.append(index)
 
 
     # Return Info
