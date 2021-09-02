@@ -13,7 +13,8 @@ def MADOutliers(DF, Variable, **kwargs):
     # Versions ---------------------------------------------------------
 
     # 01 - Aug 26th, 2021 - Starter
-    # 02 -
+    # 02 - Sep 01st, 2021 - Solving error of "Divide by Zero"
+    # 03 - 
 
 
     # List of Variables and kwargs -------------------------------------
@@ -50,15 +51,16 @@ def MADOutliers(DF, Variable, **kwargs):
 
     Outliers = []
 
-    for index, x in enumerate(Data):
+    if(MAD != 0):
+        
+        for index, x in enumerate(Data):
 
-        t = (x-Median)/MAD
-        t = np.absolute(t)
+            t = (x-Median)/MAD
+            t = np.absolute(t)
 
-        if(t > threshold):
-            Outliers.append(index)
+            if(t > threshold):
+                Outliers.append(index)
 
 
     return Outliers
-
 
