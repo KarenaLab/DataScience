@@ -46,7 +46,7 @@ for n in range(2, 7):
     fig.suptitle(Title, fontsize= 14)
 
     plt.scatter(Data_X["Longitude"], Data_X["Latitude"],
-                c= Data_X["Cluster"].map(Colors), s= 4, alpha= 0.4)
+                c= Data_X["Cluster"].map(Colors), s= 4, alpha= 0.5)
 
     plt.xlabel("Longitude")
     plt.ylabel("Latitude")
