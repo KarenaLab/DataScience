@@ -142,7 +142,7 @@ for col in Data_X_Analysis:
     plt.xlabel("No Neighbors")
     plt.legend(loc= "center left")
 
-    plt.savefig(Title)    
+    plt.savefig(Title, dpi= 240)    
     plt.show()
 
     print("")
