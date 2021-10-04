@@ -116,6 +116,28 @@ for col in Data_X_Analysis:
         imputer = KNNImputer(n_neighbors= n,
                              weights= "uniform", metric= "nan_euclidean")
 
+        # Weights: Weight function used in prediction
+        # * uniform:  Uniform weights. All points in each neighborhood
+        #             are weighted equally,
+        #
+        # * distance: Weight points by the inverse of their distance. in
+        #             this case, closer neighbors of a query point will
+        #             have a greater influence than neighbors which are
+        #             further away
+        #
+        # * callable: A user-defined function which accepts an array of
+        #             distances, and returns an array of the same shape
+        #             containing the weights.
+
+        # Metric: Distance metric for searching neighbors.
+        # * nan_euclidean: (Default)
+        # * callable: a user-defined function which conforms to the
+        #             definition of _pairwise_callable(X, Y, metric,
+        #             **kwds). The function accepts two arrays, X and Y,
+        #             and a missing_values keyword in kwds and returns a
+        #             scalar distance value.
+
+
         DF_Transform = imputer.fit_transform(Data_X, Data_Y)
         DF_Transform = pd.DataFrame(data= DF_Transform, columns= Data_X_Columns)
 
@@ -170,8 +192,6 @@ for col in Data_X_Analysis:
     plt.show()
     print("")
 
-
-    
    
 # Sources ---------------------------------------------------------------
 
