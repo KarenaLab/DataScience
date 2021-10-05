@@ -57,7 +57,6 @@ for k in range(Min_K, (Max_K+1)):
 x1, x2 = No_K[0], No_K[-1]
 y1, y2 = Sum_Dist2[0], Sum_Dist2[-1]
 
-
 Distance = []
 Dist_Max = 0
 Best_K = 0
