@@ -116,7 +116,3 @@ plt.show()
 
 print(" \n * \n")
 
-
-
-
-
