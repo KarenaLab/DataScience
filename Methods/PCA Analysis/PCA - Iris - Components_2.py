@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.decomposition import PCA
 
 import matplotlib.pyplot as plt
@@ -20,12 +21,23 @@ DF_Cols = DF.shape[1]
 DF_Columns = DF.columns
 
 
+# Setting Target
+
 Target = "species"
 
 Data_X = DF.drop(columns = [Target])
 Data_Y = DF[Target]
 Target_List = Data_Y.unique()
 Target_Size = Data_Y.nunique()
+
+
+# Standard Normalizing
+
+Data_X_Columns = Data_X.columns
+
+Scale = StandardScaler()
+Transform = Scale.fit_transform(Data_X)
+Data_X = pd.DataFrame(Transform, columns= Data_X_Columns)
 
 
 # PCA Analysis
@@ -43,12 +55,20 @@ while(i <= Components):
     
 
 PCA = PCA(n_components= Components)
+# https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
 
 PCA.fit(Data_X)
 PCA_X = PCA.transform(Data_X)
 
 New_DF = pd.DataFrame(PCA_X, columns= Comp_List)
 New_DF[Target] = Data_Y
+
+PC1_Explain = PCA.explained_variance_ratio_[0]
+PC2_Explain = PCA.explained_variance_ratio_[1]
+
+print(f" >    PC1 Explain: {PC1_Explain*100:.3f}%")
+print(f" >    PC2 Explain: {PC2_Explain*100:.3f}%")
+print(f' > "Lost" of Info: {(1 - PC1_Explain - PC2_Explain)*100:.3f}%\n')
 
 
 # Plotting
@@ -98,14 +118,11 @@ ax3.set_xlabel("PC2", fontweight= "bold", loc= "center")
 
 plt.legend(fontsize= 8)
 
-#plt.savefig(Title, dpi= 240)
+plt.savefig(Title, dpi= 240)
 plt.show()
+
 
 # Closing
 
-print(" \n * \n")
-
-
-
-
+print(" * \n")
 
