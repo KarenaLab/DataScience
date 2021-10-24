@@ -1,0 +1,45 @@
+
+#   Project: (Name of the Folder)
+#  Filename: (filename.py)
+#   Creator: (e-mail or initials)
+#      Date: (Date of Creation)
+#   Version: (Number of the Version)
+#     Descr: (Short Description of the Project or Aims)
+#
+
+# Version Control -------------------------------------------------------
+
+# 01 - dd/mm/aaaa - Launch Version
+# 02 - 
+
+
+# Libraries -------------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+
+
+# Definitions -----------------------------------------------------------
+
+Seed = 27
+np.random.seed(Seed)
+
+plt.style.use("ekc")
+
+
+# Setup -----------------------------------------------------------------
+
+
+
+# MAIN Program ----------------------------------------------------------
+
+
+
+# Sources ---------------------------------------------------------------
+
+# 
+#
+#
