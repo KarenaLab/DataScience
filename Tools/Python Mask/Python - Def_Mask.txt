@@ -1,0 +1,25 @@
+# (Name/Description of module)
+
+def
+
+    # (Libraries - delete this tag)
+
+
+
+    # Versions ---------------------------------------------------------
+
+    # 01 - date - Starter
+    # 02 -
+
+
+    # List of Variables and kwargs -------------------------------------
+
+    #
+    #
+
+
+
+    # Program ----------------------------------------------------------
+
+ 
+    
