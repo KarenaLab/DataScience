@@ -58,4 +58,3 @@ def ColumnsClassifier(DF):
 
     return Numeric, Categoric, Text
 
-    
