@@ -67,4 +67,3 @@ def ColumnsChecker(DF):
 
     return New_Columns
 
-    
