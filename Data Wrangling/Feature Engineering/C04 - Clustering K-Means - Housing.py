@@ -51,11 +51,11 @@ for n in range(2, 7):
     plt.xlabel("Longitude")
     plt.ylabel("Latitude")
 
-
-    plt.savefig(Title, dpi= 240)
+    #plt.savefig(Title, dpi= 240)
     plt.show()
 
 
 # Closing
 
 print("\n * \n")
+
