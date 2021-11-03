@@ -32,3 +32,4 @@ DF["displacement"] = np.pi * ((0.5*DF["bore"])**2) * DF["stroke"] * DF["num_of_c
 # Closing
 
 print("\n * \n")
+
