@@ -1,45 +1,40 @@
 # Checking Columns Names
 
 def ColumnsChecker(DF):
+    """
+    Check columns names and gives interactive options to change its
+    names.
+
+    """
 
     import numpy as np
     import pandas as pd
 
 
-
     # Versions ---------------------------------------------------------
 
     # 01 - Oct 14th, 2021 - Starter
-    # 02 -
-
-
-    # List of Variables and kwargs -------------------------------------
-
-    #
-    #
-
+    # 02 - Apr 26th, 2022 - Adjusting for PEP-008
+    # 03 - 
 
 
     # Program ----------------------------------------------------------
 
-    DF_Columns = DF.columns
-    New_Columns = []
+    print("")
+    
+    DF_columns = DF.columns
+    new_columns = []
 
     keyfinder = "ultrn"
-    # U= Upper, L= lower, T= Title, R= Rename or N= Nothing
+    # U= UPPER, L= lower, T= Title, R= Rename or N= Nothing
 
-    i = 0
-    while(i < len(DF_Columns)):
-
-        col = DF_Columns[i].strip()
-
-        print(f" >>> Column {i} = {col}")
-
-        option = input("     (u) UPPER, (l) lower, (t) Title, (r) Rename or (n) Nothing: ")
+    for col in DF_columns:
+        print(f" > Column {i} = {col}")
+        option = input("   (u) UPPER, (l) lower, (t) Title, (r) Rename or (n) Nothing: ")
         option = option.lower()
 
+        col = col.strip()
         if(keyfinder.find(option, 0) >= 0):
-
             if(option == "u"):
                 col = col.upper()
 
@@ -50,20 +45,19 @@ def ColumnsChecker(DF):
                 col = col.lower().title()
 
             if(option == "r"):
-                col = input("     >>> Type the new column Name: ")
+                col = input("   > Type the new column Name: ")
+
+
+            col = col.replace(" ", "_")
+            col = col.replace("-", "_")
+
+            new_columns.append(col)
+            print("")        
+            
 
         else:
-            print("     **** Wrong choose. Nothing Done **** \n")
+            print("   **** Wrong choose. Check the options and do it again **** \n")
                     
-
-        col = col.replace(" ", "_")
-        col = col.replace("-", "_")
-
-        New_Columns.append(col)
-        print("")        
-
-        i = i+1
-
-
-    return New_Columns
-
+    print(" >>> Columns Name Check Done! \n")
+    
+    return new_columns
