@@ -1,8 +1,10 @@
 
 import numpy as np
 import pandas as pd
+from pandas.api.types import is_numeric_dtype
 
-def transformation_log(DF):
+
+def transform_log(DF):
     """
     Performs Logaritmic transformation, EXCEPTS if there is negative
     numbers.
@@ -11,14 +13,19 @@ def transformation_log(DF):
     data = DF.copy()
 
     for column in data.columns:
-        data_min = data[column].min()
+        if(is_numeric_dtype(data[column]) == True):
+            data_min = data[column].min()
 
-        if(data_min > 0):
-            data[column] = data[column].apply(lambda x: np.log(x))
+            if(data_min > 0):
+                data[column] = data[column].apply(lambda x: np.log(x))
+                print(f" > Column {column}: Log Transformation applied")
+
+            else:
+                print(f" > Column {column} = *** Cannot perform Log transformation (Negative Number(s)) ***")
 
         else:
-            print(f" > Column: {column} = Cannot perform logaritmic transformation (Negative Number(s))")
-
+            print(f" > Column {column} = *** Cannot perform Log Tranformation (String) ***")
+            
     return data
 
 
@@ -31,8 +38,12 @@ def transform_exp(DF, c=3):
     data = DF.copy()
 
     for column in data.columns:
-        data[column] = data[column].apply(lambda x: np.power(x, c))
+        if(is_numeric_dtype(data[column]) == True):
+            data[column] = data[column].apply(lambda x: np.power(x, c))
+            print(f" > Column {column}: Exp Transformation applied")
 
+        else:
+            print(f" > Column {column} = *** Cannot perform Exp Tranformation (String) ***")
 
     return data
 
@@ -53,17 +64,27 @@ def transform_boxcox(DF):
     """
     from scipy.stats import boxcox
     data = DF.copy()
+    lmbda_list = []
 
     for column in data.columns:
-        data_min = data[column].min()
+        if(is_numeric_dtype(data[column]) == True):
+            data_min = data[column].min()
 
-        if(data_min > 0):
-            data[column], lmbda = boxcox(data[column])
+            if(data_min > 0):
+                data[column], lmbda = boxcox(data[column])
+                lmbda_list.append(lmbda)
+                print(f" > Column {column}: Box-Cox Transformation applied. (lmbda = {lmbda:.5f})")
+                
+            else:
+                lmbda_list.append(np.nan)
+                print(f" > Column {column} = Cannot perform Box-Cox transformation (Negative Number(s))")
 
         else:
-            print(f" > Column: {column} = Cannot perform logaritmic transformation (Negative Number(s))")
+            lmbda_list.append(np.nan)
+            print(f" > Column {column} = *** Cannot perform Box-Cox Tranformation (String) ***")
+            
 
-    return data
+    return data, lmbda_list
 
 
 def transform_reciprocal(DF):
@@ -74,7 +95,12 @@ def transform_reciprocal(DF):
     data = DF.copy()
 
     for column in data.columns:
-        data[column] = data.column.apply(lambda x: x ** (-1))
+        if(is_numeric_dtype(data[column]) == True):
+            data[column] = data[column].apply(lambda x: x ** (-1))
+            print(f" > Column {column}: Reciprocal Transformation applied")
+
+        else:
+            print(f" > Column {column} = *** Cannot perform Reciprocal Tranformation (String) ***")
 
     return data
 
