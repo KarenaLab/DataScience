@@ -1,5 +1,5 @@
 
-def regressor_metrics(y_true, y_pred, decimals=4, verbose=True, MAE=True, MSE=True, R2=True):
+def regressor_metrics(y_test, y_pred, decimals=4, verbose=True, MAE=True, MSE=True, R2=True):
     """
     Metrics for Regressor Models.
 
@@ -9,6 +9,12 @@ def regressor_metrics(y_true, y_pred, decimals=4, verbose=True, MAE=True, MSE=Tr
          https://en.wikipedia.org/wiki/Coefficient_of_determination
 
     """
+    import numpy as np
+    
+    from sklearn.metrics import mean_absolute_error
+    from sklearn.metrics import mean_squared_error
+    from sklearn.metrics import r2_score
+
     
     if(MAE == True):
         MAE = mean_absolute_error(y_test, y_pred)
@@ -43,6 +49,9 @@ def correlation(y_test, y_pred, method="pearson", decimals=4):
     https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html
 
     """
+
+    import numpy as np
+    import pandas as pd
 
     data = pd.DataFrame([])
     data["y_test"] = y_test
