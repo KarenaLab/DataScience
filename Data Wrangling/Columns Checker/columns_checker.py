@@ -39,7 +39,8 @@ def columns_checker(DF):
                 col = col.lower()
 
             if(option == "t"):
-                col = col.lower().title()
+                col = col.lower()\
+                         .title()
 
             if(option == "r"):
                 col = input("   > type the new column name: ")
