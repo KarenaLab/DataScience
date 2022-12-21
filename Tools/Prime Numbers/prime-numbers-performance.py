@@ -7,7 +7,7 @@ from prime_numbers_v01 import *
 # Program ---------------------------------------------------------------
 
 limit = 10000
-rounds = 20
+rounds = 10
 repeat = 5
 
 print(f" > Doing {rounds} rounds of {repeat} repeated times")
