@@ -18,11 +18,11 @@ def prime_numbers(limit, verbose=False):
             if(div > 2):
                 break
             
-
         if(div == 2):
             prime_list.append(number)
             if(verbose == True):
                 print(f" > {number} is prime number")
+
 
     time_out = time.time()
     time_delta = time_out - time_in
