@@ -26,16 +26,19 @@ def normalize_minmax(DataFrame, columns, verbose=False):
     with Minimum and Maximum for each normalization.
     
     """
-    DataFrame_temp = DataFrame.copy()
+    data = DataFrame.copy()
     norm_params = {}
 
     if(isinstance(columns, str) == True):
-       DataFrame_temp, data_min, data_max = norm_minmax_(DataFrame_temp, col, verbose)
-       
+        columns = list(columns)
 
-    if(isinstance(columns, pd.Index) == True or isinstance(columns, list) == True):
-        for col in columns:
-            DataFrame_temp[col] = norm_minmax_(DataFrame_temp[col], col, verbose)
+    for col in columns:
+        if(is_numeric_dtype(data) == True):
+            data_min = data[col].min()
+            data_max = data[col].max()
+        
+
+
 
 
     return DataFrame_temp
@@ -47,9 +50,7 @@ def norm_minmax_(data, label, verbose):
     Highly suggested to use normalize_minmax.
 
     """
-    if(is_numeric_dtype(data) == True):
-        data_min = data.min()
-        data_max = data.max()
+
 
         data = (data - data_min)/(data_max - data_min)
 
