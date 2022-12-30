@@ -1,17 +1,26 @@
 
+# Libraries
 import os
 
 import numpy as np
 import pandas as pd
 
-from normalizations_v03 import *
+from normalizations_v04 import *
+
+
 
 
 # Program --------------------------------------------------------------
 
-filename = "housing.csv"
-DF = pd.read_csv(filename, sep=",", encoding="utf-8")
+# Path Control
+path_main = os.getcwd()
+path_database = r"D:\01 - Projects Binder\03 - Databases"
 
-DF_copy = DF.copy()
-DF = normalize_standscore(DF, columns=["longitude", "latitude"])
+
+# Data import
+os.chdir(path_database)
+filename = "housing.csv"
+df = pd.read_csv(filename, sep=",", encoding="utf-8")
+
+df = normalize_standscore(df, columns=["longitude", "latitude"])
 
