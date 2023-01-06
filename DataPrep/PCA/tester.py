@@ -5,13 +5,12 @@ import pandas as pd
 from PCA_analysis_v01 import *
 
 
-DF = pd.read_csv("winequality_red.csv", sep=",", encoding="utf-8")
+df = pd.read_csv("winequality_red.csv", sep=",", encoding="utf-8")
 
 target = "quality"
-DF_var = DF.drop(columns=[target])
-DF_target = DF[target]
+df_var = df.drop(columns=[target])
+df_target = df[target]
 
-title = "PCA Analysis"
-PCA_analysis(DF_var, title)
-
+title = "PCA Analysis - Wine Quality Red dataset"
+df_pca, pca_variance = pca_analysis(df_var, title)
 
