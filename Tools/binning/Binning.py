@@ -1,90 +1,56 @@
 
-def Binning(Size, **kwargs):
+def binning(size, method="square", **kwargs):
+    """
+    Calculates the optimal (or best) binning size for histogram.
+    Methods available: sqrt*, rice, sturges and freedman-diaconis. 
 
-    # Calculating the best number of bins for a Histogram.
-    # Methods: square*, Rice Rule, Sturges and Freedman-Diaconis.
-
+    """
     import numpy as np
 
-
-    # Versions ---------------------------------------------------------
-
-    # 01 - Sep 28th, 2021 - Starter
-    # 02 -
-
-
-    # List of Variables and **kwargs -----------------------------------
-
-    # Size = Number of items of Sample
-    # Method = Square*, Sturges or Freedman-Diaconis,
-    #
-
+    # version
+    # 01 - Sep 28th, 2021 - Starter,
+    # 02 - Jan 10th, 2023 - adjusting PEP-008 and adding sturges method,
+    # 03 - 
 
     # Program ----------------------------------------------------------
+    method = method.lower()
 
-    get = kwargs.get("method")
-
-    if(get == None):
-        get = "Square"
-
-
-    get = get.lower()
-
-
-
-    if(get == "square" or get == ""):
-
-        if(Size < 500):
-
-            # Equation = sqrt(Size)
-            bins = int(np.sqrt(Size) + 0.5)
-
-        else:
-            bins = int(np.sqrt(Size))
-            # if Size >= 500, bins are always odd
-
+    if(method == "square" or method == "sqrt"):
+        # Equation = sqrt(size)
+        bins = int(np.sqrt(size) + 0.5)       
+        if(size >= 500):          
+            # if size > 500, bins are always odd.
             if(bins % 2 == 0):
                 bins = bins+1
 
 
-
-    if(get == "rice" or get == "ricerule"):
-
-        # Equation = 2* root(Size, 3)
-        bins = int((2 * np.cbrt(Size)) + 0.5)
+    if(method == "rice" or method == "ricerule"):
+        # Equation = 2* root(size, 3)
+        bins = int((2 * np.cbrt(size)) + 0.5)
 
         
-
-    if(get == "sturges" or get == "sturge"):
-
+    if(method == "sturges" or method == "sturge"):
         # https://www.statology.org/sturges-rule/
         # Equation = log(n,2) + 1
-        bins = int((np.log2(Size)+1) + 0.5)
+        bins = int((np.log2(size)+1) + 0.5)
 
 
-
-    if(get == "freedman" or get == "freedman-diaconis" or
-       get == "freedmandiaconis" or get == "freedman_diaconis"):
-
+    if(method == "freedman" or method == "freedman-diaconis" or
+       method == "freedmandiaconis" or method == "freedman_diaconis"):
         # https://en.wikipedia.org/wiki/Freedman-Diaconis_rule
-
+        #
         #                     IQR(x)
         # Equation = 2 * --------------- 
-        #                 root(Size, 3)
+        #                 root(size, 3)
 
         IQR = kwargs.get("IQR")
-
         if(IQR == None):
-
             print(" >> Warning: Missing IQR Value")
             bins = None
 
         else:
-
-            bins = int((2*IQR)/(np.cbrt(Size)) + 0.5)          
-
+            bins = int((2*(IQR/np.cbrt(size) + 0.5)))          
 
 
     return bins
-
 
