@@ -12,5 +12,5 @@ df_var = df.drop(columns=[target])
 df_target = df[target]
 
 title = "PCA Analysis - Wine Quality Red dataset"
-df_pca, pca_variance = pca_analysis(df_var, title)
+df_pca, pca_variance = pca_analysis(df_var, title, savefig=False)
 
