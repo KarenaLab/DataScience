@@ -1,5 +1,5 @@
 
-def binning(size, method="square", **kwargs):
+def binning(size, method="sqrt", iqr=None):
     """
     Calculates the optimal (or best) binning size for histogram.
     Methods available: sqrt*, rice, sturges and freedman-diaconis. 
@@ -18,39 +18,33 @@ def binning(size, method="square", **kwargs):
     if(method == "square" or method == "sqrt"):
         # Equation = sqrt(size)
         bins = int(np.sqrt(size) + 0.5)       
+
         if(size >= 500):          
-            # if size > 500, bins are always odd.
+            # if size >= 500, bins are always odd.
             if(bins % 2 == 0):
                 bins = bins+1
 
-
-    if(method == "rice" or method == "ricerule"):
+    elif(method == "rice" or method == "ricerule"):
         # Equation = 2* root(size, 3)
         bins = int((2 * np.cbrt(size)) + 0.5)
-
         
-    if(method == "sturges" or method == "sturge"):
+    elif(method == "sturges" or method == "sturge"):
         # https://www.statology.org/sturges-rule/
         # Equation = log(n,2) + 1
         bins = int((np.log2(size)+1) + 0.5)
 
-
-    if(method == "freedman" or method == "freedman-diaconis" or
-       method == "freedmandiaconis" or method == "freedman_diaconis"):
+    elif(method == "freedman" or method == "freedman-diaconis"):
         # https://en.wikipedia.org/wiki/Freedman-Diaconis_rule
-        #
         #                     IQR(x)
         # Equation = 2 * --------------- 
         #                 root(size, 3)
 
-        IQR = kwargs.get("IQR")
-        if(IQR == None):
+        if(iqr == None):
             print(" >> Warning: Missing IQR Value")
             bins = None
 
         else:
-            bins = int((2*(IQR/np.cbrt(size) + 0.5)))          
-
+            bins = int((2*(iqr/np.cbrt(size))) + 0.5)        
 
     return bins
 
