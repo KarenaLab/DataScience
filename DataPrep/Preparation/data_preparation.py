@@ -1,6 +1,18 @@
 
+# Data Preparation ----------------------------------------------------
+
+# Versions
+# 01 - Feb 07th, 2023 - Starter
+# 02 -
+
+
+# Insights
+
+
+# Libraries
 import numpy as np
 import pandas as pd
+
 
 
 def col_preparation(DataFrame, method="lower", verbose=True):
@@ -9,7 +21,7 @@ def col_preparation(DataFrame, method="lower", verbose=True):
 
     Variables:
     * DataFrame = DataFrame to be standartized,
-    * method = lower, UPPER or Capitalize. (default=lower),
+    * method = lower, UPPER or Title. (default=lower),
     * verbose = True or False. (default=True).
 
     """
@@ -34,8 +46,8 @@ def col_preparation(DataFrame, method="lower", verbose=True):
             elif(method == "upper"):
                 new_col = new_col.upper()
 
-            elif(method == "capitalize"):
-                new_col = new_col.capitalize()        
+            elif(method == "title"):
+                new_col = new_col.title()        
 
 
         data = data.rename(columns={col: new_col})
@@ -43,22 +55,26 @@ def col_preparation(DataFrame, method="lower", verbose=True):
         if(verbose == True):
             print(f" > column {col} renamed for **{new_col}**")
 
+
+    if(verbose == True):
+        print("")
+        
     return data
 
 
-# Duplicates
+def remove_duplicates(DataFrame, verbose=True):
+    """
+    Remove duplicates from **DataFrame**
 
-# Missing Data
+    """
+    data = DataFrame.copy()
 
-# Data Format
+    no_rows = data.shape[0]
+    duplicated = np.array(data.index[data.duplicated()])
+    data = data.drop_duplicates(ignore_index=True)
 
-# Consistency
+    if(verbose == True):
+        print(f" > Duplicated items removed: {len(duplicated)} ({(len(duplicated)/no_rows)*100:.3f})%\n")
 
-# Standardization
-
-# Histograms and related
-
-# Transformation
-
-
+    return data
 
