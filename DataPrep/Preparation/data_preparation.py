@@ -78,3 +78,36 @@ def remove_duplicates(DataFrame, verbose=True):
 
     return data
 
+
+def nan_count(DataFrame, del_threshold=100, verbose=True):
+    """
+
+
+    """
+    data = DataFrame.copy()
+    nan_count_list = []
+
+    # Delete Threshold preparation.
+    # value is always a percentage, if x<1 be transformed.
+    if(del_threshold > 0 and del_threshold < 1):
+        del_threshold = int(del_threshold * 100)
+
+   
+    nrows = DataFrame.shape[0]
+
+    for col in data.columns:
+        nan_count = data[col].isna().sum()
+        nan_count_list.append(nan_count)
+        
+        nan_pct = np.round((nan_count / nrows) * 100, decimals=3)
+
+        if(nan_count > 0 and verbose == True):
+            print(f' > column "{col}" has {nan_count} NaNs ({(nan_count/nrows)*100:.2f}%)')
+
+        if(nan_pct >= del_threshold and verbose == True):
+            data = data.drop(columns=[col])
+            print(f' >>> Warning: Column deleted. Delete threshold={del_threshold}% \n')
+
+
+    return data
+
