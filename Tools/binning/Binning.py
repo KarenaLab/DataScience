@@ -1,18 +1,17 @@
-
 def binning(size, method="sqrt", iqr=None):
     """
     Calculates the optimal (or best) binning size for histogram.
     Methods available: sqrt*, rice, sturges and freedman-diaconis. 
 
     """
-    import numpy as np
-
     # version
     # 01 - Sep 28th, 2021 - Starter,
     # 02 - Jan 10th, 2023 - adjusting PEP-008 and adding sturges method,
     # 03 - 
 
     # Program ----------------------------------------------------------
+    import numpy as np
+    
     method = method.lower()
 
     if(method == "square" or method == "sqrt"):
@@ -45,6 +44,7 @@ def binning(size, method="sqrt", iqr=None):
 
         else:
             bins = int((2*(iqr/np.cbrt(size))) + 0.5)        
+
 
     return bins
 
