@@ -35,6 +35,5 @@ def one_hot_encoding(DataFrame, columns=[], col_drop=True, sep="_",
             if(verbose == True):
                 print(f' > Error: column "{col}" not found.') 
 
-
     return data
-            
+
