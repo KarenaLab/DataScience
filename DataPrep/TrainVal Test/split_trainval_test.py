@@ -20,7 +20,7 @@ def split_trainval_test(DataFrame, train_size=80, seed=None):
 
     # Program ----------------------------------------------------------
     data = DataFrame.copy()
-    data = data.dropna()
+    data = data.dropna().reset_index(drop=True)
 
     if(seed != None):
         np.random.seed(seed)
@@ -30,11 +30,10 @@ def split_trainval_test(DataFrame, train_size=80, seed=None):
     if(train_size >= 1):
         train_size = train_size / 100
 
-    n_cut = (int(data.shape[0] * train_size) + 0.5)
+    n_cut = int((data.shape[0] * train_size) + 0.5)
 
     data_trainval = data.iloc[0:n_cut, :].reset_index(drop=True)
     data_test = data.iloc[n_cut: , :].reset_index(drop=True)
-         
 
     return data_trainval, data_test
 
