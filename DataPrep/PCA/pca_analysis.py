@@ -43,7 +43,7 @@ def pca_analysis(DataFrame, title=None, decimals=4, color="darkblue",
     
     pct_variance = pca.explained_variance_ratio_
     pct_variance = np.cumsum(pct_variance)
-    pct_var_plot = np.round(pct_variance*100, decimals=decimals)
+    pct_var_plot = np.round(pct_variance * 100, decimals=decimals)
 
 
     # Plotting
