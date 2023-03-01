@@ -60,6 +60,8 @@ def regr_lr_ridge(x_train, y_train, x_test, y_test,
     regr = Ridge()
 
     # Model parameters
+    regr.set_params(alpha=alpha)
+    
     regr_params = regr.get_params()
     regr_params.pop("copy_X")
     
@@ -87,6 +89,8 @@ def regr_lr_lasso(x_train, y_train, x_test, y_test,
     regr = Lasso()
 
     # Model parameters
+    regr.set_params(alpha=alpha)
+    
     regr_params = regr.get_params()
     regr_params.pop("copy_X")
 
