@@ -27,7 +27,15 @@ DF = pd.DataFrame(data=data[1: ], columns=data[0])
 
 # Ploting
 fig = plt.figure(figsize=[8, 4.5])
-grd = gridspec.GridSpec(nrows=2, ncols=2, width_ratios=[1, 1], height_ratios=[1, 1])
+
+plt.rcParams["font.family"] = "Helvetica"
+plt.rcParams["font.weight"] = 8
+plt.rcParams["xtick.bottom"] = False
+plt.rcParams["ytick.right"] = False
+
+
+grd = gridspec.GridSpec(nrows=2, height_ratios=[1, 1], hspace=0.35,
+                        ncols=2, width_ratios=[1, 1], wspace=0.30)
 
 title = "Anscombes Quartet"
 fig.suptitle(title, fontsize=10, weight="bold")
@@ -40,32 +48,32 @@ ax3 = plt.subplot(grd[1, 1], sharex=ax2, sharey=ax2)    # Fourth Plot
 ax0.scatter(DF["I_x"], DF["I_y"], color="darkblue", edgecolor="white", zorder=20)
 ax0.plot([2,20], [4,13], color="darkred", linewidth=1, zorder=21)
 
-ax1.scatter(DF["II_x"], DF["II_y"], color="darkred", edgecolor="white", zorder=22)
-ax1.plot([2,20], [4,13], color="darkblue", linewidth=1, zorder=23)
+ax1.scatter(DF["II_x"], DF["II_y"], color="darkblue", edgecolor="white", zorder=22)
+ax1.plot([2,20], [4,13], color="darkred", linewidth=1, zorder=23)
 
-ax2.scatter(DF["III_x"], DF["III_y"], color="orange", edgecolor="white", zorder=24)
-ax2.plot([2,20], [4,13], color="darkgreen", linewidth=1, zorder=25)
+ax2.scatter(DF["III_x"], DF["III_y"], color="darkblue", edgecolor="white", zorder=24)
+ax2.plot([2,20], [4,13], color="darkred", linewidth=1, zorder=25)
 
-ax3.scatter(DF["IV_x"], DF["IV_y"], color="darkgreen", edgecolor="white", zorder=26)
-ax3.plot([2,20], [4,13], color="orange", linewidth=1, zorder=27)
+ax3.scatter(DF["IV_x"], DF["IV_y"], color="darkblue", edgecolor="white", zorder=26)
+ax3.plot([2,20], [4,13], color="darkred", linewidth=1, zorder=27)
 
 ax0.set_xlim([2, 20])
 ax0.set_ylim([2, 14])
 
-ax0.set_xlabel("x1", fontsize=9)
-ax0.set_ylabel("y1", fontsize=9)
+ax0.set_xlabel("x1", fontsize=8)
+ax0.set_ylabel("y1", fontsize=8)
 ax0.grid(axis="both", color="lightgrey", linestyle="--", linewidth=0.5)
 
-ax1.set_xlabel("x2", fontsize=9)
-ax1.set_ylabel("y2", fontsize=9)
+ax1.set_xlabel("x2", fontsize=8)
+ax1.set_ylabel("y2", fontsize=8)
 ax1.grid(axis="both", color="lightgrey", linestyle="--", linewidth=0.5)
 
-ax2.set_xlabel("x3", fontsize=9)
-ax2.set_ylabel("y3", fontsize=9)
+ax2.set_xlabel("x3", fontsize=8)
+ax2.set_ylabel("y3", fontsize=8)
 ax2.grid(axis="both", color="lightgrey", linestyle="--", linewidth=0.5)
 
-ax3.set_xlabel("x4", fontsize=9)
-ax3.set_ylabel("y4", fontsize=9)
+ax3.set_xlabel("x4", fontsize=8)
+ax3.set_ylabel("y4", fontsize=8)
 ax3.grid(axis="both", color="lightgrey", linestyle="--", linewidth=0.5)
 
 plt.savefig(title, dpi=240)
