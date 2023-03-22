@@ -14,7 +14,6 @@ def inner_join(left, right):
         if(left.count(i) > 0):
             i_join.append(i)
 
-
     return i_join
 
 
@@ -28,7 +27,6 @@ def left_join(left, right):
     for i in left:
         if(right.count(i) == 0):
             l_join.append(i)
-
 
     return l_join
 
@@ -44,7 +42,6 @@ def outter_join(left, right):
     for i in join:
         if(o_join.count(i) == 0):
             o_join.append(i)
-
 
     return o_join
 
