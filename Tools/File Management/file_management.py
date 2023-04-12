@@ -15,6 +15,7 @@ def files_list(path=None):
         path_comeback = os.getcwd()
         os.chdir(path)
 
+
     content = os.listdir()
     
     files_list = []
@@ -38,6 +39,7 @@ def folders_list(path=None):
     if(path != None):
         path_comeback = os.getcwd()
         os.chdir(path)
+
 
     content = os.listdir()
     
@@ -75,9 +77,9 @@ def filter_by_extension(files_list, files_type):
 
     # Select files with extensions enabled
     new_list = []
-    for f in file_list:
+    for f in files_list:
         name, extension = f.split(".")
-        if(enable_types.count(extension) == 1):
+        if(files_type.count(extension) == 1):
             new_list.append(f)
 
 
