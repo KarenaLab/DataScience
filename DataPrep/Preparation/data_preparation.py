@@ -15,7 +15,7 @@ import pandas as pd
 
 
 
-def col_preparation(DataFrame, method="lower", verbose=True):
+def col_preparation(DataFrame, method=None, verbose=True):
     """
     Standartize columns names.
 
@@ -34,20 +34,22 @@ def col_preparation(DataFrame, method="lower", verbose=True):
         items_to_replace = {"-": "_",
                             " ": "_",
                             "(": "",
-                            ")": ""}
+                            ")": "",
+                            "?": ""}
         # add new items here: item to be replaced and new item.
 
         for old, new in list(zip(items_to_replace.keys(), items_to_replace.values())):
             new_col = new_col.replace(old, new)
 
-            if(method == "lower"):
-                new_col = new_col.lower()
 
-            elif(method == "upper"):
-                new_col = new_col.upper()
+        if(method == "lower"):
+            new_col = new_col.lower()
 
-            elif(method == "title"):
-                new_col = new_col.title()        
+        elif(method == "upper"):
+            new_col = new_col.upper()
+
+        elif(method == "title"):
+            new_col = new_col.title()        
 
 
         data = data.rename(columns={col: new_col})
@@ -79,9 +81,13 @@ def remove_duplicates(DataFrame, verbose=True):
     return data
 
 
-def nan_count(DataFrame, del_threshold=100, verbose=True):
+def nan_counter(DataFrame, del_threshold=100, verbose=True):
     """
+    Counts the number of NaN  (empty) at rows and delete row if the
+    percentage of NaNs is higher than a given threshold.
 
+    threshold: [0, 100], default=100; delete only if all columns of the
+        row is empty.
 
     """
     data = DataFrame.copy()
@@ -104,10 +110,13 @@ def nan_count(DataFrame, del_threshold=100, verbose=True):
         if(nan_count > 0 and verbose == True):
             print(f' > column "{col}" has {nan_count} NaNs ({(nan_count/nrows)*100:.2f}%)')
 
-        if(nan_pct >= del_threshold and verbose == True):
+        if(nan_pct >= del_threshold):
             data = data.drop(columns=[col])
-            print(f' >>> Warning: Column deleted. Delete threshold={del_threshold}% \n')
+
+            if(verbose == True):
+                print(f' >>> Warning: Column deleted. Delete threshold={del_threshold}% \n')
 
 
     return data
+
 
