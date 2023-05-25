@@ -12,7 +12,8 @@ def one_hot_encoding(DataFrame, columns=[], col_drop=True, sep="_",
     * columns = list of variables to be performed one hot encoding,
     * col_drop = True* or False. If true, will remove the initial column,
     * sep = Separation sufix for the new column names. (default="_"),
-    * verbose = True* or False. Important information about the module.    
+    * verbose = True* or False (quiet mode). Prints important information
+                about the operation.    
 
     """
     # Versions:
@@ -36,6 +37,7 @@ def one_hot_encoding(DataFrame, columns=[], col_drop=True, sep="_",
         else:
             if(verbose == True):
                 print(f' > Error: column "{col}" not found.') 
+
 
     return data
 
