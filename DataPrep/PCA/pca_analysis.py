@@ -1,5 +1,5 @@
 
-def pca_analysis(DataFrame, title=None, decimals=4, color="darkblue",
+def pca_analysis(DataFrame, title=None, decimals=6, color="darkblue",
                  plot=True, savefig=False, verbose=True):
     """
     Applies the PCA (Principal Component Analysis) into the **DataFrame**
@@ -43,20 +43,22 @@ def pca_analysis(DataFrame, title=None, decimals=4, color="darkblue",
     
     pct_variance = pca.explained_variance_ratio_
     pct_variance = np.cumsum(pct_variance)
-    pct_var_plot = np.round(pct_variance * 100, decimals=decimals)
+    pct_var_plot = np.round((pct_variance * 100), decimals=decimals)
 
 
-    # Plotting
+    # Plot
     if(plot == True):
         fig = plt.figure(figsize=[8, 4.5])
-        fig.suptitle(title, fontsize=10, fontweight="bold")
+        fig.suptitle(title, fontsize=10, fontweight="bold", x=0.98, ha="right")
 
         plt.plot(range(1, len(pct_var_plot)+1), pct_var_plot, color=color, linewidth=1.5, zorder=20)
+
         plt.grid(axis="both", color="lightgrey", linestyle="--", linewidth=0.5, zorder=1)
         plt.ylabel("% Accumulated", loc="top")
         plt.xlabel("PCA Components", loc="right")
 
         plt.tight_layout()
+
         if(savefig == True):
             plt.savefig(title, dpi=240)
             if(verbose == True):
