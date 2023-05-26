@@ -3,7 +3,9 @@
 
 # Versions
 # 01 - Feb 07th, 2023 - Starter
-# 02 -
+# 02a - May 25th, 2023 - Adjusting nan_counter
+# 02b - May 25th, 2023 - Adding distinct_counter
+# 03 - 
 
 
 # Insights
@@ -12,7 +14,6 @@
 # Libraries
 import numpy as np
 import pandas as pd
-
 
 
 def col_preparation(DataFrame, method=None, verbose=True):
@@ -120,3 +121,26 @@ def nan_counter(DataFrame, del_threshold=100, verbose=True):
     return data
 
 
+def distinct_counter(DataFrame, columns=None, verbose=True):
+    """
+    Counts the number of distinct values for all columns of DataFrame, or
+    given columns.
+
+    """
+    data = DataFrame.copy()
+
+    if(columns == None):
+        columns = data.columns.tolist()
+
+    distinct_list = []
+    
+    for col in columns:
+        distinct = len(data[col].unique())
+        distinct_list.append(distinct)
+
+        if(verbose == True):
+            print(f' > col "{col}" has {distinct} distinct values')
+
+
+    return distinct_list
+        
