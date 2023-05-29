@@ -144,3 +144,4 @@ def distinct_counter(DataFrame, columns=None, verbose=True):
 
     return distinct_list
         
+
