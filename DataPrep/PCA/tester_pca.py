@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 
-from pca_analysis_v02 import *
+from pca_analysis_v03 import *
 
 
 # Functions
@@ -24,12 +24,12 @@ def split_target(DataFrame, target):
     return x, y
         
 
-
 # Program --------------------------------------------------------------
 df = pd.read_csv("winequality_red.csv", sep=",", encoding="utf-8")
 
 x, y = split_target(df, target="quality")
 
 title = "PCA Analysis - Wine Quality Red dataset"
-df_pca, pca_variance = pca_analysis(x, title, savefig=False)
+df_pca, pca_variance = pca_analysis(x, title, yellowline=95, greenline=99,
+                                    savefig=False)
 
