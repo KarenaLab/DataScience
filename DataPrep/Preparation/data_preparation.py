@@ -11,6 +11,9 @@
 # Insights
 
 
+# List of Functions
+
+
 # Libraries
 import numpy as np
 import pandas as pd
@@ -42,7 +45,7 @@ def col_preparation(DataFrame, method=None, verbose=True):
         for old, new in list(zip(items_to_replace.keys(), items_to_replace.values())):
             new_col = new_col.replace(old, new)
 
-
+        # Applying method name style
         if(method == "lower"):
             new_col = new_col.lower()
 
@@ -52,11 +55,11 @@ def col_preparation(DataFrame, method=None, verbose=True):
         elif(method == "title"):
             new_col = new_col.title()        
 
+        if(new_col != col):
+            data = data.rename(columns={col: new_col})
 
-        data = data.rename(columns={col: new_col})
-
-        if(verbose == True):
-            print(f" > column {col} renamed for **{new_col}**")
+            if(verbose == True):
+                print(f" > column {col} renamed for **{new_col}**")
 
 
     if(verbose == True):
@@ -77,7 +80,7 @@ def remove_duplicates(DataFrame, verbose=True):
     data = data.drop_duplicates(ignore_index=True)
 
     if(verbose == True):
-        print(f" > Duplicated items removed: {len(duplicated)} ({(len(duplicated)/no_rows)*100:.3f})%\n")
+        print(f" > Duplicated items removed: {len(duplicated)} ({(len(duplicated)/no_rows):.2%}) \n")
 
     return data
 
@@ -95,12 +98,13 @@ def nan_counter(DataFrame, del_threshold=100, verbose=True):
     nan_count_list = []
 
     # Delete Threshold preparation.
-    # value is always a percentage, if x<1 be transformed.
+    # value is always a percentage, if (x < 1), need to be transformed.
     if(del_threshold > 0 and del_threshold < 1):
         del_threshold = int(del_threshold * 100)
 
    
     nrows = DataFrame.shape[0]
+    has_action = False
 
     for col in data.columns:
         nan_count = data[col].isna().sum()
@@ -109,13 +113,19 @@ def nan_counter(DataFrame, del_threshold=100, verbose=True):
         nan_pct = np.round((nan_count / nrows) * 100, decimals=3)
 
         if(nan_count > 0 and verbose == True):
-            print(f' > column "{col}" has {nan_count} NaNs ({(nan_count/nrows)*100:.2f}%)')
+            has_action = True
+            print(f' > column "{col}" has {nan_count} NaNs ({(nan_count/nrows)*100:.2%})')
 
         if(nan_pct >= del_threshold):
             data = data.drop(columns=[col])
 
             if(verbose == True):
+                has_action = True
                 print(f' >>> Warning: Column deleted. Delete threshold={del_threshold}% \n')
+
+
+    if(has_action == False and verbose == True):
+        print(f" >>> No NaN detected at DataFrame. \n")
 
 
     return data
@@ -144,4 +154,22 @@ def distinct_counter(DataFrame, columns=None, verbose=True):
 
     return distinct_list
         
+
+def split_target(DataFrame, target):
+    """
+    Splits **Dataframe** into x (variables) and y (target).
+
+    """
+    data = DataFrame.copy()
+    
+    if(data.columns.tolist().count(target) == 1):
+        x = data.drop(columns=[target])
+        y = data[target]
+
+    else:
+        x = np.nan
+        y = np.nan
+
+
+    return x, y
 
