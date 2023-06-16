@@ -19,7 +19,11 @@ from sklearn.model_selection import KFold
 
 def split_kfold(x, n_splits=5, shuffle=True, seed=None):
     """
+    Splits a **dataset** in **n_splits** folds and
+    returns a list with: [folder_index, train_index, test_index]
 
+    Based in Scikit-learn function KFold. More info:
+    https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html
 
     """
     data = x.copy()
@@ -44,9 +48,12 @@ def split_kfold(x, n_splits=5, shuffle=True, seed=None):
     return split_table
 
 
-def get_fold(split_table, fold):
+def get_fold(split_table, fold, verbose=False):
     """
+    Gets a table with train and test index splits and gets only one
+    **fold**.
 
+    Attention: Works together with *split_kfold* function.
 
     """
     if(fold < len(split_table)):
@@ -56,6 +63,9 @@ def get_fold(split_table, fold):
     else:
         train = []
         test = []
+
+        if(verbose == True):
+            print(f" >>> Error: *fold* exceeds the number of folds in the split_table. Returning an empty lists for both (train_index and test_index).") 
 
 
     return train, test
