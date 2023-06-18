@@ -72,5 +72,46 @@ def normalize_standscore(DataFrame, columns=None, verbose=False):
 
 
     return data, params_norm       
-    
 
+
+def apply_normalization(DataFrame, params, verbose=True):
+    """
+    Applies the **params** to normalize the DataFrame.
+    
+    """
+
+    data = DataFrame.copy()
+    data_columns = data.columns.tolist()
+    
+    for col in params.keys():
+        if(data_columns.count(col) == True):
+            method = params[col]["method"]
+
+            if(method == "Min Max"):
+                data_min = params[col]["min"]
+                data_max = params[col]["max"]
+
+                data[col] = data[col].apply(lambda xt: (xt * (data_max - data_min)) + data_min)
+                
+
+            elif(method == "Standard Score"):
+                data_mean = params[col]["mean"]
+                data_stddev = params[col]["stddev"]
+
+                data[col] = data[col].apply(lambda xt: (xt * data_stddev) + data_mean)
+                
+
+            else:
+                if(verbose == True):
+                    print(f' >>> Error: method {method} not valid')
+            
+
+        else:
+            if(verbose == True):
+                print(f' > Warning: column {col} not found at DataFrame')
+
+
+    return data
+
+
+# end
