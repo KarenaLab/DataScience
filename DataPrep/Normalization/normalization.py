@@ -79,10 +79,24 @@ def apply_normalization(DataFrame, params, verbose=True):
     Applies the **params** to normalize the DataFrame.
     
     """
-
     data = DataFrame.copy()
     data_columns = data.columns.tolist()
-    
+
+    # Equation: Invert Trasformation
+
+    # Invert Min Max transformation
+    # xt = (x - min) / (max - min)
+    # Isol x:
+    # xt * (max - min) = (x - min)
+    # x = (xt * (max - min)) + min
+
+    # Invert Standard Score transformation
+    # xt = (x - mean) / stddev
+    # Isol x:
+    # xt * stddev = x - mean
+    # x = (xt * stddev) + mean
+
+
     for col in params.keys():
         if(data_columns.count(col) == True):
             method = params[col]["method"]
