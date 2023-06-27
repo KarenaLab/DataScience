@@ -167,8 +167,8 @@ def split_target(DataFrame, target):
         y = data[target]
 
     else:
-        x = np.nan
-        y = np.nan
+        x = []
+        y = []
 
 
     return x, y
