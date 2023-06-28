@@ -45,8 +45,8 @@ def regr_linreg(x_train, y_train, x_test, y_test,
     params = {"intercept": model.intercept_, "coef": model.coef_}
 
     # Metrics
-    model_metrics = regr_metrics(y_test, y_pred, metrics=metrics)
-    model_metrics["model"] = "Linear Regression"
+    metrics = regr_metrics(y_test, y_pred, metrics=metrics)
+    metrics["model"] = "Linear Regression"
 
     # Results
     results = {}
