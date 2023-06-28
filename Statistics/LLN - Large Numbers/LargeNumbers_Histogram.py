@@ -1,12 +1,3 @@
-# *** Law of Large Numbers  ***
-#
-#  Project: LLN - Law of Large Number
-# Filename: LargeNumbers_4Lines_v01
-#  Creator: EKChikui (EKChikui@gmail.com)
-#     Date: 17th Jan 2021
-#  Version: 01
-#
-# -----------------------------------------------------------------------
 
 # Versions --------------------------------------------------------------
 
@@ -14,7 +5,7 @@
 
 
 
-# Libraries -------------------------------------------------------------
+# Libraries 
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,9 +14,6 @@ import matplotlib.gridspec as gridspec
 
 
 # MAIN Program ----------------------------------------------------------
-
-# 0 - Header ------------------------------------------------------------
-
 print("")
 print(" *** LLN - Law of Large Numbers (Four Lines) ***")
 print("")
@@ -121,9 +109,6 @@ ax3.axvline(x= 3.5, color="yellow", linewidth= 0.75)
 plt.tight_layout()
 plt.savefig(Title, dpi= 240)
 plt.show()
-
-
-
 
 
 # Sources ---------------------------------------------------------------
