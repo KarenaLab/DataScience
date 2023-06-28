@@ -28,10 +28,9 @@ def split_kfold(x, n_splits=5, shuffle=True, seed=None):
 
     """
     data = x.copy()
-
-    # Data split parameters
     kf = KFold()
 
+    # Parameters
     kf.n_splits = n_splits
     kf.shuffle = shuffle
 
@@ -43,6 +42,7 @@ def split_kfold(x, n_splits=5, shuffle=True, seed=None):
     for i, (train_index, test_index) in enumerate(kf.split(data)):
         line = [i, train_index, test_index]
         split_table.append(line)
+
     
     return split_table
 
@@ -66,13 +66,14 @@ def get_fold(split_table, fold, verbose=False):
         if(verbose == True):
             print(f" >>> Error: *fold* exceeds the number of folds in the split_table. Returning an empty lists for both (train_index and test_index).") 
 
+
     return train, test
 
 
 def separate_fold(x, y, train_index, test_index):
     """
     Separate a x and y into x_train, y_train, x_test and y_test using its
-    indexes.
+    indexes (train_index and test_index).
 
     """
     x_train = x.iloc[train_index, :]
@@ -81,23 +82,6 @@ def separate_fold(x, y, train_index, test_index):
     x_test = x.iloc[test_index, :]
     y_test = y.iloc[test_index]
 
+
     return x_train, y_train, x_test, y_test
-
-
-def norm_standardscore(x_train, x_test):
-    """
-
-
-    """
-    scaler = StandardScaler()
-    scaler.fit(x_train)
-
-    x_train = scaler.transform(x_train)
-    x_test = scaler.transform(x_test)
-
-    return x_train, x_test
-
-
-
-
 
