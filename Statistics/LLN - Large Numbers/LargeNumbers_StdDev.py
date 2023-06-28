@@ -1,17 +1,6 @@
-# *** Law of Large Numbers  ***
-#
-#  Project: LLN - Law of Large Number
-# Filename: LargeNumbers_StdDev_v01
-#  Creator: EKChikui (EKChikui@gmail.com)
-#     Date: 17th Jan 2021
-#  Version: 01
-#
-# -----------------------------------------------------------------------
-
 # Versions --------------------------------------------------------------
 
 # 01 - 19th Jan 2021 - Starter
-
 
 
 # Libraries -------------------------------------------------------------
@@ -19,7 +8,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-
 
 
 # MAIN Program ----------------------------------------------------------
@@ -106,20 +94,6 @@ plt.tight_layout()
 plt.savefig(Title, dpi= 240)
 plt.show()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 2 - Plotting ----------------------------------------------------------
 
 
 
