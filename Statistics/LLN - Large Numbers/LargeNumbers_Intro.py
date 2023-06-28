@@ -1,12 +1,4 @@
-# *** Law of Large Numbers  ***
-#
-#  Project: LLN - Law of Large Number
-# Filename: LargeNumbers_v01
-#  Creator: EKChikui (EKChikui@gmail.com)
-#     Date: 17th Jan 2021
-#  Version: 01
-#
-# -----------------------------------------------------------------------
+
 
 # Versions --------------------------------------------------------------
 
