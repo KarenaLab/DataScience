@@ -145,3 +145,4 @@ deprecated/
 # ignore backup Folders
 backup/
 deprecated/
+report/
