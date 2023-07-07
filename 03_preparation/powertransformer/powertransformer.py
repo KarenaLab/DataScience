@@ -1,4 +1,4 @@
-# PowerTransform [P347]
+# PowerTransform (P347) ------------------------------------------------
 # Applies powertransform to the dataset using the scikit module and adding a
 # dictionary with the lambdas used for analysis of data and inverse transform.
 
@@ -22,6 +22,7 @@ import pandas as pd
 from sklearn.preprocessing import PowerTransformer
 
 
+# ----------------------------------------------------------------------
 
 def apply_powertransformer(DataFrame, method="yeo-johnson", standardize=True):
     """
