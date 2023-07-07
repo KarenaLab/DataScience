@@ -1,4 +1,4 @@
-# String to date
+# String to date (P228) ------------------------------------------------
 # Convert a pandas column from string to python datetime.
 
 # Versions
@@ -10,7 +10,6 @@
 # Insights, improvements and bugfix
 #    Add control of old column (to keep it or delete it)
 #    Add verbose controls and messages
-
 
 
 # Libraries
