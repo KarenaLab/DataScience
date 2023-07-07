@@ -1,4 +1,4 @@
-# Date and Time management
+# Date and Time management (P338) ---------------------------------------
 # Simple functions with datetime to support date and time calc.
 
 # Versions
@@ -7,7 +7,7 @@
 # 02 - 
 
 
-# Insights and bugs
+# Insights, improvements and bugs
 #
 
 
@@ -29,7 +29,6 @@ def today(date_format="%d-%m-%Y"):
     return datetime.date.today()
 
 
-
 def print_datetime(date, date_format="%d-%m-%Y"):
     """
     Prints the datetime in selected **date_format**.
@@ -39,7 +38,6 @@ def print_datetime(date, date_format="%d-%m-%Y"):
     print(date.strftime(date_format))
 
     return None
-
 
 
 def next_date(start_date, days, date_format="%d-%m-%Y"):
@@ -54,7 +52,6 @@ def next_date(start_date, days, date_format="%d-%m-%Y"):
     final_date = start_date + datetime.timedelta(days=days)
 
     return final_date
-
 
 
 def time_between(start_date, final_date, date_format="%d-%m-%Y", verbose=True):
@@ -82,3 +79,5 @@ def time_between(start_date, final_date, date_format="%d-%m-%Y", verbose=True):
 
     return time
 
+
+# end
