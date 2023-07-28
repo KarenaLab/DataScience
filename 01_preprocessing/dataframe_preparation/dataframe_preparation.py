@@ -39,7 +39,9 @@ def col_preparation(DataFrame, method=None, verbose=True):
                             " ": "_",
                             "(": "",
                             ")": "",
-                            "?": ""}
+                            "?": "",
+                            "[": "",
+                            "]": ""}
         # add new items here: item to be replaced and new item.
 
         for old, new in list(zip(items_to_replace.keys(), items_to_replace.values())):
