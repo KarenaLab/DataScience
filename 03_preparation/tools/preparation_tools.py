@@ -56,13 +56,16 @@ def alpha_space():
     hyperparameters.
 
     """
-    alpha = np.append(np.array([]), linspacebystep(start=0.01, stop=0.05, step=0.01))
-    alpha = np.append(alpha, linspacebystep(start=0.05, stop=0.5, step=0.05))
-    alpha = np.append(alpha, linspacebystep(start=0.5, stop=1, step=0.1))
-    alpha = np.append(alpha, linspacebystep(start=1, stop=10, step=1))
-    alpha = np.append(alpha, linspacebystep(start=10, stop=20, step=2))
+    space_list = [[0.01, 0.05, 0.01], [0.05, 0.5, 0.05], [0.5, 1, 0.1], [1, 10, 1], [10, 20, 2]]
+    # parameters = [start, stop, step]
 
-    alpha = np.round(alpha, decimals=3)
+    alpha = np.array([])
+    for (start, stop, step) in space_list:
+        space = linspacebystep(start=start, stop=stop, step=step)
+        alpha = np.append(alpha, space)
+
+    # Removing duplicates and organizing (if necessary)
+    alpha = np.round(alpha, decimals=4)
     alpha = np.sort(np.unique(alpha))
 
 
