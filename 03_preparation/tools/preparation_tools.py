@@ -72,6 +72,18 @@ def alpha_space():
     return alpha
 
 
+def clipped_relu(x, ceil):
+    """
+    Applies and returna the clipped ReLu to an input value.
+
+    """
+    if(x < 0): value = 0
+    elif(x > ceil): value = ceil
+    else: value = x
+
+    return value
+
+
 # end
     
 
