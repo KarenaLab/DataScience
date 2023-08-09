@@ -14,6 +14,8 @@
 import numpy as np
 import pandas as pd
 
+from time import time
+
 
 # ----------------------------------------------------------------------
 def truncate(x, high, low=0):
@@ -82,6 +84,24 @@ def clipped_relu(x, ceil):
     else: value = x
 
     return value
+
+
+def time_elapsed(time_in, decimals=3, verbose=True):
+    """
+    Calculate the time elapsed between **time_in** and the time that
+    called this function.
+
+    """
+    time_out = time()
+    elapsed = np.round(time_out - time_in, decimals=decimals)
+
+    if(verbose == True):
+        print(f"({elapsed} s)")
+
+
+    return elapsed
+
+
 
 
 # end
