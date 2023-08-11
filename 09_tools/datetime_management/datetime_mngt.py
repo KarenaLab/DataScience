@@ -80,4 +80,19 @@ def time_between(start_date, final_date, date_format="%d-%m-%Y", verbose=True):
     return time
 
 
+def truncate_date(datestamp):
+    """
+    Removes hour from datestamp.
+
+    """
+    if(isinstance(datestamp, datetime) == True):
+        trunc_date = datestamp.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    else:
+        trunc_date = ""
+
+
+    return trunc_date
+
+
 # end
