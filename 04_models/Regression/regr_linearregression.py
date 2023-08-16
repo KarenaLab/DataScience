@@ -7,6 +7,7 @@
 # 03 - 
 
 # Insights and bugfix
+# Add ElasticNet model
 #
 
 
@@ -15,6 +16,8 @@ import numpy as np
 import pandas as pd
 
 from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Ridge
+from sklearn.linear_model import Lasso
 
 
 # Personal modules
@@ -22,7 +25,6 @@ import sys
 sys.path.append(r"C:\python_modules")
 
 from regr_metrics import *
-
 
 
 def regr_linreg(x_train, y_train, x_test, y_test,
@@ -41,16 +43,17 @@ def regr_linreg(x_train, y_train, x_test, y_test,
     # HiperParameters
     model.fit_intercept = fit_intercept
     model.positive = positive
-    hiperparams = {"fit_intercept": fit_intercept, "positive": positive}
+    hiperparams = {"model": "Linear Regression",
+                   "fit_intercept": fit_intercept,
+                   "positive": positive}
 
     # Fit, predict and parameters
     model.fit(x_train, y_train)
     y_pred = model.predict(x_test)
-    params = {"intercept": model.intercept_, "coef": model.coef_}
+    params = {"intercept": model.intercept_[0], "coef": model.coef_}
 
     # Metrics
     metrics = regr_metrics(y_test, y_pred, metrics=metrics)
-    metrics["model"] = "Linear Regression"
 
     # Results
     results = {}
@@ -62,7 +65,7 @@ def regr_linreg(x_train, y_train, x_test, y_test,
 
 
 def regr_ridge(x_train, y_train, x_test, y_test,
-               alpha=1, fit_intercept=True, positive=False, metrics="all"):
+               alpha, fit_intercept=True, positive=False, metrics="all"):
     """
     Module to perform a **Ridge Regression (L2)** using scikit-learn module
     and adding some features to help to have more control over modules and
@@ -78,16 +81,18 @@ def regr_ridge(x_train, y_train, x_test, y_test,
     model.alpha = alpha
     model.fit_intercept = fit_intercept
     model.positive = positive
-    hiperparams = {"alpha": alpha, "fit_intercept": fit_intercept, "positive": positive}
+    hiperparams = {"model": "Ridge",
+                   "alpha": alpha,
+                   "fit_intercept": fit_intercept,
+                   "positive": positive}
 
     # Fit, predict and parameters
     model.fit(x_train, y_train)
     y_pred = model.predict(x_test)
-    params = {"intercept": model.intercept_, "coef": model.coef_}
+    params = {"intercept": model.intercept_[0], "coef": model.coef_}
 
     # Metrics
     metrics = regr_metrics(y_test, y_pred, metrics=metrics)
-    metrics["model"] = "Ridge"
 
     # Results
     results = {}
@@ -99,7 +104,7 @@ def regr_ridge(x_train, y_train, x_test, y_test,
 
 
 def regr_lasso(x_train, y_train, x_test, y_test,
-               alpha=1, fit_intercept=True, positive=False, metrics="all"):
+               alpha, fit_intercept=True, positive=False, metrics="all"):
     """
     Module to perform a **Lasso Regression (L1)** using scikit-learn module
     and adding some features to help to have more control over modules and
@@ -115,16 +120,18 @@ def regr_lasso(x_train, y_train, x_test, y_test,
     model.alpha = alpha
     model.fit_intercept = fit_intercept
     model.positive = positive
-    hiperparams = {"alpha": alpha, "fit_intercept": fit_intercept, "positive": positive}
+    hiperparams = {"model": "Lasso",
+                   "alpha": alpha,
+                   "fit_intercept": fit_intercept,
+                   "positive": positive}
 
     # Fit, predict and parameters
     model.fit(x_train, y_train)
     y_pred = model.predict(x_test)
-    params = {"intercept": model.intercept_, "coef": model.coef_}
+    params = {"intercept": model.intercept_[0], "coef": model.coef_}
 
     # Metrics
     metrics = regr_metrics(y_test, y_pred, metrics=metrics)
-    metrics["model"] = "Ridge"
 
     # Results
     results = {}
