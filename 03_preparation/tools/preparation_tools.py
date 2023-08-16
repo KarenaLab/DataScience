@@ -111,7 +111,7 @@ def d_percentage(start, end, decimals=4):
                   start
     
     """
-    diff_pct = np.round(((start - end) / start), decimals=decimals)
+    diff_pct = np.round(((end - start) / start), decimals=decimals)
 
 
     return diff_pct
