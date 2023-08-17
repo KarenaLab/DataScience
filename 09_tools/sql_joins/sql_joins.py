@@ -10,10 +10,11 @@ def inner_join(left, right):
     Performs **inner join** between **left** list and **right** list.
 
     """
-    i_join = []
+    i_join = list()
     for i in right:
         if(left.count(i) > 0):
             i_join.append(i)
+
 
     return i_join
 
@@ -24,10 +25,11 @@ def left_join(left, right):
     Attention: Take care with left and right position.
 
     """
-    l_join = []
+    l_join = list()
     for i in left:
         if(right.count(i) == 0):
             l_join.append(i)
+
 
     return l_join
 
@@ -38,11 +40,12 @@ def outter_join(left, right):
 
     """
     join = left + right
-    o_join = []
+    o_join = list()
 
     for i in join:
         if(o_join.count(i) == 0):
             o_join.append(i)
+
 
     return o_join
 
