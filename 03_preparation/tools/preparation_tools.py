@@ -83,6 +83,7 @@ def clipped_relu(x, ceil):
     elif(x > ceil): value = ceil
     else: value = x
 
+
     return value
 
 
@@ -118,8 +119,3 @@ def d_percentage(start, end, decimals=4):
 
 
 # end
-    
-
-
-
-
