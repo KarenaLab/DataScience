@@ -1,4 +1,4 @@
-# Data Preparation Tools
+# Data Preparation Tools [P355] ----------------------------------------
 # Short and small functions to help in data preparation
 
 # Versions
@@ -17,7 +17,7 @@ import pandas as pd
 from time import time
 
 
-# ----------------------------------------------------------------------
+
 def truncate(x, high, low=0):
     """
     Truncate the value **x** between **low** and **high**. 
