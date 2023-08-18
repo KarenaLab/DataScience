@@ -1,5 +1,5 @@
 
-# Data Preparation ----------------------------------------------------
+# Data Preparation [P263] ---------------------------------------------
 
 # Versions
 # 01 - Feb 07th, 2023 - Starter
@@ -66,6 +66,7 @@ def col_preparation(DataFrame, method=None, verbose=True):
 
     if(verbose == True):
         print("")
+
         
     return data
 
@@ -83,6 +84,7 @@ def remove_duplicates(DataFrame, verbose=True):
 
     if(verbose == True):
         print(f" > Duplicated items removed: {len(duplicated)} ({(len(duplicated)/no_rows):.2%}) \n")
+
 
     return data
 
@@ -169,8 +171,8 @@ def split_target(DataFrame, target):
         y = data[target]
 
     else:
-        x = []
-        y = []
+        x = list()
+        y = list()
 
 
     return x, y
