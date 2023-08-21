@@ -1,5 +1,18 @@
+# One Hot Encoding [P200] ----------------------------------------------
+
+# Libraries
 import numpy as np
 import pandas as pd
+
+
+# Versions:
+# 01 - Feb 15th, 2023 - Starter
+# 02 -
+
+
+# Insights, improvements and bugfix
+#
+
 
 
 def one_hot_encoding(DataFrame, columns=[], col_drop=True, sep="_",
@@ -16,14 +29,6 @@ def one_hot_encoding(DataFrame, columns=[], col_drop=True, sep="_",
                 about the operation.    
 
     """
-    # Versions:
-    # 01 - Feb 15th, 2023 - Starter
-    # 02 -
-
-    # Insigths:
-    #
-    
-    # Program -----------------------------------------------------------
     data = DataFrame.copy()
 
     for col in columns:
