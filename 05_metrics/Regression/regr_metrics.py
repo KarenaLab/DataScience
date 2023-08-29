@@ -1,3 +1,4 @@
+# Regression Metrics [P201] --------------------------------------------
 
 # Libraries
 import numpy as np
@@ -13,10 +14,11 @@ from sklearn.metrics import r2_score
 # 02 - Jun 27th, 2023 - Adjusting for metrics="all" and sync with model
 #      params
 
-# Insights
-# Add SMAPE
-# Add MAPE
-# Add Bias
+# Insights, improvements and bugfix
+# Add SMAPE (Aug 29th, 2023)
+# Add MAPE (Aug 29th, 2023)
+# Add Bias (Aug 29th, 2023)
+#
 
 
 def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
@@ -69,7 +71,6 @@ def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
     return results
 
 
-
 def regr_bias(y_true, y_pred):
     """
     Statistical **Bias**, in the mathematical field of statistics, is a systematic
@@ -89,3 +90,21 @@ def regr_bias(y_true, y_pred):
 
     return bias
 
+
+def regr_smape(y_true, y_pred):
+    """
+    Symmetric Mean Absolute Percentage Error (SMAPE) is an accuracy measure
+    based on percentage (or relative) errors.
+    Used to measure the predictive accuracy of models. It is called as:
+
+    SMAPE = (1/n) * sum(|pred - true| / ((|true| + |pred|) / 2) * 100)
+
+    """
+    # Data preparation: Not need because it will be called after the main
+    # function. If be used in a single way, need to add np.array treatment
+
+    smape = (100 / len(y_true)) * np.sum((np.abs(y_pred - y_true) / ((np.abs(y_true) + np.abs(y_pred)) / 2)))
+
+
+    return smape
+                                         
