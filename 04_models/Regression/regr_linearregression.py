@@ -1,5 +1,5 @@
 
-# Linear Regression Module ---------------------------------------------
+# Linear Regression Module [P346] --------------------------------------
 
 # Versions
 # 01 - Jun 27th, 2023 - Starter
@@ -50,7 +50,9 @@ def regr_linreg(x_train, y_train, x_test, y_test,
     # Fit, predict and parameters
     model.fit(x_train, y_train)
     y_pred = model.predict(x_test)
-    params = {"intercept": model.intercept_[0], "coef": model.coef_}
+    print(model)
+    
+    params = {"intercept": model.intercept_, "coef": model.coef_}
 
     # Metrics
     metrics = regr_metrics(y_test, y_pred, metrics=metrics)
@@ -89,7 +91,7 @@ def regr_ridge(x_train, y_train, x_test, y_test,
     # Fit, predict and parameters
     model.fit(x_train, y_train)
     y_pred = model.predict(x_test)
-    params = {"intercept": model.intercept_[0], "coef": model.coef_}
+    params = {"intercept": model.intercept_, "coef": model.coef_}
 
     # Metrics
     metrics = regr_metrics(y_test, y_pred, metrics=metrics)
@@ -128,7 +130,7 @@ def regr_lasso(x_train, y_train, x_test, y_test,
     # Fit, predict and parameters
     model.fit(x_train, y_train)
     y_pred = model.predict(x_test)
-    params = {"intercept": model.intercept_[0], "coef": model.coef_}
+    params = {"intercept": model.intercept_, "coef": model.coef_}
 
     # Metrics
     metrics = regr_metrics(y_test, y_pred, metrics=metrics)
