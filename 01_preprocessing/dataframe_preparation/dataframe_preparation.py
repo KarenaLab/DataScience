@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 
 
-def read_csv(filename, sep=",", ending="utf-8"):
+def read_csv(filename, sep=",", encoding="utf-8"):
     """
     Automates the dataframe reading.
 
