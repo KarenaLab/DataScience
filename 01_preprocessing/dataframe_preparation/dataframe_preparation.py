@@ -19,6 +19,17 @@ import numpy as np
 import pandas as pd
 
 
+def read_csv(filename, sep=",", ending="utf-8"):
+    """
+    Automates the dataframe reading.
+
+    """
+    data = pd.read_csv(filename, sep=sep, encoding=encoding)
+
+
+    return data
+
+
 def col_preparation(DataFrame, method=None, verbose=True):
     """
     Standartize columns names.
