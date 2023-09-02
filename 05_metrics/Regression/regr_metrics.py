@@ -42,7 +42,7 @@ def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
     y_true = y_true[~np.isnan(y_true)]
     
     y_pred = np.array(y_pred)
-    y_pred = y_true[~np.isnan(y_true)]
+    y_pred = y_pred[~np.isnan(y_pred)]
 
 
     # Metrics    
