@@ -3,10 +3,11 @@
 
 # Versions
 # 01 - Jun 27th, 2023 - Starter
-# 02 - Jun 28th, 2023 - Added Ridge and Lasso
-# 03 - 
+#      Jun 28th, 2023 - Add Ridge and Lasso
+# 02 - Sep 01st, 2023 - Return y_pred with results
 
-# Insights and bugfix
+
+# Insights, improvements and bugfix
 # Add ElasticNet model
 #
 
@@ -62,7 +63,7 @@ def regr_linreg(x_train, y_train, x_test, y_test,
     results.update(params)
     results.update(metrics)
 
-    return results
+    return results, y_pred
 
 
 def regr_ridge(x_train, y_train, x_test, y_test,
@@ -101,7 +102,7 @@ def regr_ridge(x_train, y_train, x_test, y_test,
     results.update(params)
     results.update(metrics)
 
-    return results
+    return results, y_pred
 
 
 def regr_lasso(x_train, y_train, x_test, y_test,
@@ -140,5 +141,5 @@ def regr_lasso(x_train, y_train, x_test, y_test,
     results.update(params)
     results.update(metrics)
 
-    return results
+    return results, y_pred
 
