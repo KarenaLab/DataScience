@@ -1,5 +1,5 @@
 
-# Normalization --------------------------------------------------------
+# Normalization [P345] -------------------------------------------------
 
 # Versions
 # 01 - Jun 27th, 2023 - Starter
@@ -7,7 +7,7 @@
 
 
 # Insights and Bugfix
-#
+# Return parameters from normalization
 
 
 # Libraries
