@@ -11,17 +11,15 @@ from sklearn.metrics import r2_score
 
 # Versions
 # 01 - unknown - Starter,
-# 02 - Jun 27th, 2023 - Adjusting for metrics="all" and sync with model params,
-#      Aug 29th, 2023 - Adding MAPE, SMAPE and Bias,
-# 03 - Sep 01st, 2023 - Adding size test and nan removing,
+# 02 - Jun 27th, 2023 - Adjust for metrics="all" and sync with model params,
+#      Aug 29th, 2023 - Add MAPE, SMAPE and Bias,
+# 03 - Sep 01st, 2023 - Add size test and nan removing,
 #                       Rename error functions (type_error),
-# 04 - 
+#      Sep 02nd, 2023 - Add MSE option,
+#                       Bugfix: y_pred and y_true with same source of data.
+# 
 
-# Insights, improvements and bugfix
-# Add SMAPE (Aug 29th, 2023)
-# Add MAPE (Aug 29th, 2023)
-# Add Bias (Aug 29th, 2023)
-# Add size test and nan removing (Sep 01st, 2023)
+# Insights, improvements and bugfix (remove, or move from here to Version ctrl)
 # Add Hubber Loss [https://en.wikipedia.org/wiki/Huber_loss]
 #
 
@@ -56,6 +54,10 @@ def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
         if(metrics.count("mae") == 1 or metrics == "all"):
             mae = mean_absolute_error(y_true, y_pred)
             results["mae"] = mae
+
+        if(metrics.count("mse") == 1 or metrics == "all"):
+            mse = mean_squared_error(y_true, y_pred, squared=False)
+            results["mse"] = mse 
             
         if(metrics.count("rmse") == 1 or metrics == "all"):
             rmse = mean_squared_error(y_true, y_pred, squared=True)
