@@ -111,7 +111,7 @@ def bias_error(y_true, y_pred):
 
     """
     # Data preparation: Not need because it will be called after the main
-    # function. If be used in a single way, need to add np.array treatment
+    # function. If be used in a single way, need to add np.array treatment  
 
     bias = np.mean(y_pred - y_true)
 
