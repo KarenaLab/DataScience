@@ -30,7 +30,13 @@ def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
     
     Pearson R = Pearson R Coeficient,
     MAE = Mean Absolute Error,
+    MAPE = Mean Absolute Percentage Error
+    SMAPE = Symmetric mean absolute percentage error
+            https://en.wikipedia.org/wiki/Symmetric_mean_absolute_percentage_error
+    MSE = Mean Squared Error
     RMSE = Root Mean Squared Error
+    Bias = Systematic tendency of the predicted against the ground truth
+    
     R2 = R^2 or Coef. Determination
          https://en.wikipedia.org/wiki/Coefficient_of_determination
 
