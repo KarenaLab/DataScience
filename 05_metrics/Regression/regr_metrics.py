@@ -136,3 +136,19 @@ def smape_error(y_true, y_pred):
 
     return smape
                                          
+
+def append_results(DataFrame, new_dict):
+    """
+    Append a **new_dict** dictionary as a row into **DataFrame**.
+
+    """
+    new_dict = pd.Series(new_dict).to_frame()
+    DataFrame = pd.concat([DataFrame, new_dict m.T], ignore_index=True)
+
+
+    return DataFrame
+
+
+# end
+
+    
