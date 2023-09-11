@@ -83,16 +83,15 @@ def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all"):
     fit_intercept = [True, False]
     positive = [False, True]
 
-
     # Grid Search
-    gs_results = pd.DataFrame(data=[])
+    gs_results = list()
     parameters = itertools.product(fit_intercept, positive)
     
     for fi, p in parameters:
         results, _ = regr_linreg(x_train, y_train, x_test, y_test,
                                  fit_intercept=fi, positive=p, metrics=metrics)
 
-        gs_results = append_results(gs_results, results)
+        gs_results.append(results)
         
         
     return gs_results
