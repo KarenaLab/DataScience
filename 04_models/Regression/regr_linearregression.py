@@ -69,7 +69,7 @@ def regr_linreg(x_train, y_train, x_test, y_test,
     return results, y_pred
 
 
-def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all"):
+def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all", add_to_results=None):
     """
     Module to perform Grid Search with **Linear Regression** using
     scikit-learn module and adding some features to help to have more
@@ -91,9 +91,14 @@ def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all"):
         results, _ = regr_linreg(x_train, y_train, x_test, y_test,
                                  fit_intercept=fi, positive=p, metrics=metrics)
 
+        if(add_to_results != None and isinstance(add_to_results, dict) == True):
+            for index, value in zip(add_to_results.keys(), add_to_results.values()):
+                results[index] = value
+                
+
         gs_results.append(results)
-        
-        
+
+      
     return gs_results
 
 
