@@ -21,14 +21,15 @@ import itertools
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
+from sklearn.linear_model import ElasticNet
 
 
 # Personal modules
 import sys
 sys.path.append(r"C:\python_modules")
 
-from regr_metrics import *
-# using functions **regr_metrics** and **append_results**
+from regr_metrics import *          # regr_metrics and append_results
+
 
 
 def regr_linreg(x_train, y_train, x_test, y_test,
@@ -77,11 +78,19 @@ def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all",
     scikit-learn module and adding some features to help to have more
     control over modules and parameters.
 
+    Parameters are **fit_intercept** and **positive**. Both, the standard
+    parameter is the first one. (If you wish to lock some, just declare a
+    new list with only the selected parameter).
+    
+
     More info:
     https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
     
     """
-    # Hiperparameters selection for Linear Regression: fit_intercept and positive.
+    # Hiperparameters selection for Linear Regression:
+    #  > fit_intercept,
+    #  > positive.
+
 
     # Grid Search
     gs_results = list()
