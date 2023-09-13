@@ -11,7 +11,7 @@ from sklearn.metrics import r2_score
 
 
 # Versions
-# 01 - unknown - Starter,
+# 01 - May 15th, 2023 - Starter,
 # 02 - Jun 27th, 2023 - Adjust for metrics="all" and sync with model params,
 #      Aug 29th, 2023 - Add MAPE, SMAPE and Bias,
 # 03 - Sep 01st, 2023 - Add size test and nan removing,
@@ -96,7 +96,6 @@ def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
     return results
 
 
-
 # def huberloss_error(y_true, y_pred):
 
 
@@ -137,40 +136,5 @@ def smape_error(y_true, y_pred):
 
     return smape
                                          
-
-def append_results(DataFrame, new_results):
-    """
-    Append a **new_dict** dictionary as a row into **DataFrame**.
-
-    """
-    if(isinstance(new_results, dict) == True):
-        new_dict = pd.Series(new_dict).to_frame()
-
-
-    if(isinstance(new_results, pd.Series) == True):
-        DataFrame = pd.concat([DataFrame, new_dict.T], ignore_index=True)
-
-    else:
-        DataFrame = list() 
-
-
-    return DataFrame
-
-
-def results_to_dataframe(results):
-    """
-    Converts a list of dictionaries with models results into a DataFrame.
-
-    """
-    data = pd.DataFrame(data=[])
-    
-    if(isinstance(results, list) == True):
-        
-        for i in results:
-            line = pd.Series(i).to_frame()
-            data = pd.concat([data, line.T], ignore_index=True)        
-
-
-    return data
 
 # end
