@@ -31,6 +31,7 @@ sys.path.append(r"C:\python_modules")
 from regr_metrics import *          # regr_metrics and append_results
 
 
+# ----------------------------------------------------------------------
 
 def regr_linreg(x_train, y_train, x_test, y_test,
                 fit_intercept=True, positive=False, metrics="all"):
@@ -89,7 +90,7 @@ def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all",
     """
     # Hiperparameters selection for Linear Regression:
     #  > fit_intercept,
-    #  > positive.
+    #  > positive,
 
 
     # Grid Search
