@@ -69,7 +69,9 @@ def regr_linreg(x_train, y_train, x_test, y_test,
     return results, y_pred
 
 
-def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all", add_to_results=None):
+def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all",
+                      fit_intercept=[True, False], positive=[False, True],
+                      add_to_results=None):
     """
     Module to perform Grid Search with **Linear Regression** using
     scikit-learn module and adding some features to help to have more
@@ -79,9 +81,7 @@ def gridsearch_linreg(x_train, y_train, x_test, y_test, metrics="all", add_to_re
     https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
     
     """
-    # Hiperparameters selection for Linear Regression
-    fit_intercept = [True, False]
-    positive = [False, True]
+    # Hiperparameters selection for Linear Regression: fit_intercept and positive.
 
     # Grid Search
     gs_results = list()
