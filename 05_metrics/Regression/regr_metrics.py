@@ -165,6 +165,7 @@ def results_to_dataframe(results):
     data = pd.DataFrame(data=[])
     
     if(isinstance(results, list) == True):
+        
         for i in results:
             line = pd.Series(i).to_frame()
             data = pd.concat([data, line.T], ignore_index=True)        
