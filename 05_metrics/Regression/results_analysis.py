@@ -16,10 +16,25 @@ import pandas as pd
 
 # ----------------------------------------------------------------------
 
+def flatten_list(array):
+    """
+    Turns a list of lists into a flat list.
+    
+    """
+    flatten = list()
+    
+    for sub_list in array:
+        for i in sub_list:
+            flatten.append(i)
+
+
+    return flatten
+
+
 def append_results(DataFrame, new_results):
     """
-    Append a **new_results** as dictionary or pandas dataframe
-    into **DataFrame**.
+    Append a **new_results** as dictionary, pandas series or pandas
+    dataframe into **DataFrame**.
 
     """
     if(isinstance(new_results, dict) == True):
@@ -58,16 +73,4 @@ def results_to_dataframe(results):
 
 
 
-def flatten_list(array):
-    """
-    Turns a list of lists into a flat list.
-    
-    """
-    flatten = list()
-    
-    for sub_list in array:
-        for i in sub_list:
-            flatten.append(i)
-
-
-    return flatten
+# end
