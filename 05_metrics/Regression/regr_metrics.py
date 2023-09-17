@@ -21,12 +21,12 @@ from sklearn.metrics import r2_score
 # 04 - Sep 17th, 2023 - Separate **Data Preparation**,
 #                       Bias and SMAPE as user friendly function, could be
 #                           called separately,
+#      Sep 17th, 2023 - Added F-beta score (KarenaLab)
 # 
 
 
 # Insights, improvements and bugfix (remove, or move from here to Version ctrl)
 # Add Hubber Loss [https://en.wikipedia.org/wiki/Huber_loss]
-# Add Fbeta Score for two metrics (KarenaLab)
 #
 
 
@@ -36,7 +36,7 @@ def _array_prep(array, dropna=True):
     Standartize arrays as numpy array format and **dropna** values.
 
     """
-    if(isinstance(array, np.array) == False):
+    if(isinstance(array, np.ndarray) == False):
         array = np.array(array)
 
     if(dropna == True):
@@ -174,6 +174,34 @@ def smape_error(y_true, y_pred):
 
 
     return smape
-                                         
+
+
+def fb_score(metric_1, metric_2, beta=1):
+    """
+    The F-beta score is the weighted harmonic mean of metric 1 and metric 2.
+    
+    The beta parameter represents the ratio of metric 2 importance to metric 1 importance.
+        * beta > 1 gives more weight to recall, while
+        * beta < 1 favors precision
+
+    For example, beta = 2 makes metric 2 twice as important as metric 1, while beta = 0.5 does
+    the opposite. Asymptotically, beta -> +inf considers only metric 2, and beta -> 0 only metric 1.
+
+                                       (metric 1 * metric 2)
+    Equation: Score = (1 + B^2) * -------------------------------
+                                   [(B^2 * metric 1) + metric 2]
+                           
+    """
+
+    if(isinstance(metric1, (int, float)) == True and isinstance(metric2, (int, float)) == True):
+        score = (1 + beta ** 2) *((metric_1 * metric_2) / ((beta ** 2 * metric_1) + metric_2))
+
+    else:
+        score = np.nan
+        print(f" > Warning: One (or both) of metric is not a number")
+
+
+    return score
+
 
 # end
