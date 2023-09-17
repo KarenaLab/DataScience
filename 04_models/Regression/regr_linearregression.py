@@ -234,3 +234,47 @@ def regr_lasso(x_train, y_train, x_test, y_test,
 
     return results, y_pred
 
+
+def gridsearch_lasso(x_train, y_train, x_test, y_test, metrics="all",
+                     alpha=[1], fit_intercept=[True, False], positive=[False, True],
+                     add_to_results=None):
+    """
+    Module to perform Grid Search with **Lasso Regression (L1)** using
+    scikit-learn module and adding some features to help to have more
+    control over modules and parameters.
+
+    Parameters are **alpha**, **fit_intercept** and **positive**.
+    For fit_intercept and positive, the standard parameter is the first
+    one. (If you wish to lock some, just declare a new list with only the
+    selected parameter).
+    
+    More info:
+    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html
+
+    """
+    # Hiperparameters selection for Ridge Regression (L2):
+    #  > alpha,
+    #  > fit_intercept,
+    #  > positive,
+
+
+    # Grid Search
+    gs_results = list()
+    parameters = itertools.product(alpha, fit_intercept, positive)
+    
+    for a, fi, p in parameters:
+        results, _ = regr_lasso(x_train, y_train, x_test, y_test,
+                                alpha=a, fit_intercept=fi, positive=p, metrics=metrics)
+
+        if(add_to_results != None and isinstance(add_to_results, dict) == True):
+            for index, value in zip(add_to_results.keys(), add_to_results.values()):
+                results[index] = value
+                
+
+        gs_results.append(results)
+
+      
+    return gs_results
+
+
+# end
