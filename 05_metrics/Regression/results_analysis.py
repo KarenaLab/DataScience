@@ -60,17 +60,16 @@ def results_to_dataframe(results):
     Converts a list of dictionaries with models results into a DataFrame.
 
     """
+    results = flatten_list(results)
     data = pd.DataFrame(data=[])
     
-    if(isinstance(results, list) == True):
-        
+    if(isinstance(results, list) == True):       
         for i in results:
-            line = pd.Series(i).to_frame()
-            data = pd.concat([data, line.T], ignore_index=True)        
-
-
+            line = pd.Series(data=results[i])
+            data = pd.concat([data, line.T], ignore_index=True)
+            
+            
     return data
-
 
 
 # end
