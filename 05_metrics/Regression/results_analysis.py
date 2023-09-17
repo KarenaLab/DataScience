@@ -64,9 +64,7 @@ def results_to_dataframe(results):
     data = pd.DataFrame(data=[])
     
     if(isinstance(results, list) == True):       
-        for i in results:
-            line = pd.Series(data=i)
-            data = pd.concat([data, line.T], ignore_index=True)
+        data = pd.DataFrame(results)
             
             
     return data
