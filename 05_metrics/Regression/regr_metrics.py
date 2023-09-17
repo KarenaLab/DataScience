@@ -18,11 +18,32 @@ from sklearn.metrics import r2_score
 #                       Rename error functions (type_error),
 #      Sep 02nd, 2023 - Add MSE option,
 #                       Bugfix: y_pred and y_true with same source of data.
+# 04 - Sep 17th, 2023 - Separate **Data Preparation**,
+#                       Bias and SMAPE as user friendly function, could be
+#                           called separately,
 # 
+
 
 # Insights, improvements and bugfix (remove, or move from here to Version ctrl)
 # Add Hubber Loss [https://en.wikipedia.org/wiki/Huber_loss]
+# Add Fbeta Score for two metrics (KarenaLab)
 #
+
+
+def _array_prep(array, dropna=True):
+    """
+    (( Internal function ))
+    Standartize arrays as numpy array format and **dropna** values.
+
+    """
+    if(isinstance(array, np.array) == False):
+        array = np.array(array)
+
+    if(dropna == True):
+        array = array[~np.isnan(array)]
+
+
+    return array
 
 
 def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
@@ -43,16 +64,13 @@ def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
 
     """
     # Data preparation
-    y_true = np.array(y_true)
-    y_true = y_true[~np.isnan(y_true)]
-    
-    y_pred = np.array(y_pred)
-    y_pred = y_pred[~np.isnan(y_pred)]
+    y_true = _array_prep(y_true, dropna=True)
+    y_pred = _array_prep(y_pred, dropna=True)
 
 
-    # Metrics    
+    # Metrics
     if(len(y_true) == len(y_pred)):
-        results = {}
+        results = dict()
         
         if(metrics.count("pearson") == 1 or metrics == "all"):
             pearson = np.corrcoef(y_true, y_pred)[0][1]
@@ -110,10 +128,21 @@ def bias_error(y_true, y_pred):
     the data.
 
     """
-    # Data preparation: Not need because it will be called after the main
-    # function. If be used in a single way, need to add np.array treatment  
+    # Data preparation
+    y_true = _array_prep(y_true, dropna=True)
+    y_pred = _array_prep(y_pred, dropna=True)
 
-    bias = np.mean(y_pred - y_true)
+
+    # Metrics
+    if(len(y_true) == len(y_pred)):  
+        bias = np.mean(y_pred - y_true)
+
+    else:
+        bias = np.nan
+
+        if(verbose == True):
+            print(f" > Warning: Arrays with different shape and/or having np.nan values ({len(y_true)}-{len(y_pred)}")
+
 
 
     return bias
@@ -128,10 +157,20 @@ def smape_error(y_true, y_pred):
     SMAPE = (1/n) * sum(|pred - true| / ((|true| + |pred|) / 2) * 100)
 
     """
-    # Data preparation: Not need because it will be called after the main
-    # function. If be used in a single way, need to add np.array treatment
+    # Data preparation
+    y_true = _array_prep(y_true, dropna=True)
+    y_pred = _array_prep(y_pred, dropna=True)
 
-    smape = (100 / len(y_true)) * np.sum((np.abs(y_pred - y_true) / ((np.abs(y_true) + np.abs(y_pred)) / 2)))
+
+    # Metrics
+    if(len(y_true) == len(y_pred)):
+        smape = (100 / len(y_true)) * np.sum((np.abs(y_pred - y_true) / ((np.abs(y_true) + np.abs(y_pred)) / 2)))
+
+    else:
+        smape = np.nan
+
+        if(verbose == True):
+            print(f" > Warning: Arrays with different shape and/or having np.nan values ({len(y_true)}-{len(y_pred)}")
 
 
     return smape
