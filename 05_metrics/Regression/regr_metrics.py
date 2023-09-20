@@ -181,8 +181,8 @@ def fb_score(metric_1, metric_2, beta=1):
     The F-beta score is the weighted harmonic mean of metric 1 and metric 2.
     
     The beta parameter represents the ratio of metric 2 importance to metric 1 importance.
-        * beta > 1 gives more weight to recall, while
-        * beta < 1 favors precision
+        * beta > 1 gives more weight to metric 2, while
+        * beta < 1 favors metric 1
 
     For example, beta = 2 makes metric 2 twice as important as metric 1, while beta = 0.5 does
     the opposite. Asymptotically, beta -> +inf considers only metric 2, and beta -> 0 only metric 1.
@@ -190,10 +190,14 @@ def fb_score(metric_1, metric_2, beta=1):
                                        (metric 1 * metric 2)
     Equation: Score = (1 + B^2) * -------------------------------
                                    [(B^2 * metric 1) + metric 2]
+
+
+    More info: https://en.wikipedia.org/wiki/Harmonic_mean
+               https://en.wikipedia.org/wiki/F-score
                            
     """
 
-    if(isinstance(metric1, (int, float)) == True and isinstance(metric2, (int, float)) == True):
+    if(isinstance(metric_1, (int, float)) == True and isinstance(metric_2, (int, float)) == True):
         score = (1 + beta ** 2) *((metric_1 * metric_2) / ((beta ** 2 * metric_1) + metric_2))
 
     else:
