@@ -51,7 +51,7 @@ def regr_linreg(x_train, y_train, x_test, y_test,
     model.positive = positive
 
     hiperparams = {"model": "Linear Regression",
-                   "alpha": np.nan,
+                   "alpha": "NA",
                    "fit_intercept": fit_intercept,
                    "positive": positive}
 
