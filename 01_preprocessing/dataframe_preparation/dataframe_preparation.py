@@ -188,3 +188,30 @@ def split_target(DataFrame, target):
 
     return x, y
 
+
+def sample_test(array, size, seed=None):
+    """
+    Selects a sample from the given **array** with a selected number
+    (**size**).
+
+    Optionally, could use a **seed** for repeatability.
+
+    """
+    # If need, select a seed
+    if(seed != None):
+        np.random.seed(seed)
+
+
+    if(size > 0 and size <= len(array)):
+        np.random.shuffle(array)
+        new_array = array[0:size]
+
+    else:
+        new_array = list()
+
+
+    return new_array
+
+
+# end
+    
