@@ -18,7 +18,7 @@ from scipy.stats import shapiro
 
 # ----------------------------------------------------------------------
 
-def EDA(data, decimals=5, verbose=True):
+def EDA(data, decimals=5, select=True):
     """
     Performs EDA (Exploratory Data Analysis).
 
@@ -30,6 +30,7 @@ def EDA(data, decimals=5, verbose=True):
     data_count = data.size
     data_nan = np.isnan(data).sum()
     data_valid = data_count - data_nan
+
 
     # Remove nans to perform all others metrics
     data = data[~np.isnan(data)]
@@ -90,7 +91,7 @@ def EDA(data, decimals=5, verbose=True):
                     "bins minimum": bins_min, "bins maximum": bins_max}
 
 
-    if(verbose == True):
+    if(select == True):
         pass
     
     
