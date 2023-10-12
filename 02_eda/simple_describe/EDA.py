@@ -3,10 +3,13 @@
 # Versions
 # 01 - Apr 22nd, 2022 - Launch
 # 02 - Jun 20th, 2023 - Standards and using print_metrics
+# 03 -
 
 
-# Insights
+# Insights, improvements and bugfix
 # Choose what type of information to return
+# Create a friendly print for results using **select**
+# 
 
 
 # Libraries
@@ -18,7 +21,7 @@ from scipy.stats import shapiro
 
 # ----------------------------------------------------------------------
 
-def EDA(data, decimals=5, select=True):
+def EDA_numeric(data, decimals=5, select=True):
     """
     Performs EDA (Exploratory Data Analysis).
 
@@ -96,5 +99,8 @@ def EDA(data, decimals=5, select=True):
     
     
     return metrics_dict
+
+
+# def EDA_categoric(data):
 
 
