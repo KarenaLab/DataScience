@@ -3,15 +3,17 @@
 
 # Versions
 # 01 - Feb 07th, 2023 - Starter
-# 02a - May 25th, 2023 - Adjusting nan_counter
-# 02b - May 25th, 2023 - Adding distinct_counter
+# 02 - May 25th, 2023 - Adjusting nan_counter
+# 02 - May 25th, 2023 - Adding distinct_counter
 # 03 - 
 
 
 # Insights
 
 
+
 # List of Functions
+
 
 
 # Libraries
@@ -189,7 +191,7 @@ def split_target(DataFrame, target):
     return x, y
 
 
-def sample_test(array, size, seed=None):
+def sample_test(array, size, seed=None, verbose=True):
     """
     Selects a sample from the given **array** with a selected number
     (**size**).
@@ -203,11 +205,15 @@ def sample_test(array, size, seed=None):
 
 
     if(size > 0 and size <= len(array)):
+        # Array selection, without repetition
         np.random.shuffle(array)
-        new_array = array[0:size]
+        new_array = array[0: size]
 
     else:
         new_array = list()
+
+        if(verbose == True):
+            print(f" > Error: Size {size} is not compatible with given array")
 
 
     return new_array
