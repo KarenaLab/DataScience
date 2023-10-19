@@ -22,12 +22,15 @@ from sklearn.metrics import r2_score
 #                       Bias and SMAPE as user friendly function, could be
 #                           called separately,
 #      Sep 17th, 2023 - Added F-beta score (KarenaLab)
-# 
+#      Oct 18th, 2023 - Added CCC (KarenaLab)
+#
 
 
 # Insights, improvements and bugfix (remove, or move from here to Version ctrl)
 # Add Hubber Loss [https://en.wikipedia.org/wiki/Huber_loss]
-#
+# Standartize with numpy functions
+# Warning messages as a function
+# 
 
 
 def _array_prep(array, dropna=True):
@@ -41,7 +44,6 @@ def _array_prep(array, dropna=True):
 
     if(dropna == True):
         array = array[~np.isnan(array)]
-
 
     return array
 
@@ -66,7 +68,6 @@ def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
     # Data preparation
     y_true = _array_prep(y_true, dropna=True)
     y_pred = _array_prep(y_pred, dropna=True)
-
 
     # Metrics
     if(len(y_true) == len(y_pred)):
@@ -117,7 +118,7 @@ def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
 # def huberloss_error(y_true, y_pred):
 
 
-def bias_error(y_true, y_pred):
+def bias_error(y_true, y_pred, verbose=True):
     """
     Statistical **Bias**, in the mathematical field of statistics, is a systematic
     tendency in which the methods used to gather data and generate statistics
@@ -132,7 +133,6 @@ def bias_error(y_true, y_pred):
     y_true = _array_prep(y_true, dropna=True)
     y_pred = _array_prep(y_pred, dropna=True)
 
-
     # Metrics
     if(len(y_true) == len(y_pred)):  
         bias = np.mean(y_pred - y_true)
@@ -141,14 +141,13 @@ def bias_error(y_true, y_pred):
         bias = np.nan
 
         if(verbose == True):
-            print(f" > Warning: Arrays with different shape and/or having np.nan values ({len(y_true)}-{len(y_pred)}")
-
+            print(f" > Warning: Arrays with different shape and/or having NaN values ({len(y_true)}-{len(y_pred)}")
 
 
     return bias
 
 
-def smape_error(y_true, y_pred):
+def smape_error(y_true, y_pred, verbose=True):
     """
     Symmetric Mean Absolute Percentage Error (SMAPE) is an accuracy measure
     based on percentage (or relative) errors.
@@ -161,7 +160,6 @@ def smape_error(y_true, y_pred):
     y_true = _array_prep(y_true, dropna=True)
     y_pred = _array_prep(y_pred, dropna=True)
 
-
     # Metrics
     if(len(y_true) == len(y_pred)):
         smape = (100 / len(y_true)) * np.sum((np.abs(y_pred - y_true) / ((np.abs(y_true) + np.abs(y_pred)) / 2)))
@@ -170,13 +168,37 @@ def smape_error(y_true, y_pred):
         smape = np.nan
 
         if(verbose == True):
-            print(f" > Warning: Arrays with different shape and/or having np.nan values ({len(y_true)}-{len(y_pred)}")
+            print(f" > Warning: Arrays with different shape and/or having NaN values ({len(y_true)}-{len(y_pred)}")
 
 
     return smape
 
 
-def fb_score(metric_1, metric_2, beta=1):
+def ccc(y_true, y_pred, verbose=True):
+    """
+
+
+    """
+    # Data preparation
+    y_true = _array_prep(y_true, dropna=True)
+    y_pred = _array_prep(y_pred, dropna=True)
+
+    # Metrics
+    if(y_true.size == y_pred.size):
+        numerator = 2 * np.corrcoef(y_true, y_pred)[0][1] * np.std(y_true) * np.std(y_pred)
+        denominator = np.var(y_true) + np.var(y_pred) + ((np.mean(y_true) - np.mean(y_pred)) ** 2)
+        rc = numerator / denominator
+
+    else:
+        rc = np.nan
+        if(verbose == True):
+            print(f" > Warning: Arrays with different shape and/or having NaN values ({len(y_true)}-{len(y_pred)}")
+
+
+    return rc
+
+   
+def fb_score(metric_1, metric_2, beta=1, verbose=True):
     """
     The F-beta score is the weighted harmonic mean of metric 1 and metric 2.
     
