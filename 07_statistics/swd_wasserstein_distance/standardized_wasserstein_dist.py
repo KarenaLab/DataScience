@@ -1,9 +1,17 @@
+# Wasserstein distance [P323] ------------------------------------------
 
 # Libraries
 import numpy as np
 import pandas as pd
 
 from scipy.stats import wasserstein_distance
+
+
+# Version
+# 01 - May 12th, 2023 - Starter
+
+# Insights, bugfix and improvements
+#
 
 
 def standardized_wasserstein_dist(data_a, data_b):
@@ -16,9 +24,11 @@ def standardized_wasserstein_dist(data_a, data_b):
     * https://en.wikipedia.org/wiki/Wasserstein_metric
 
     """
+    # Data preparation
     data_a = np.array(data_a)
     data_b = np.array(data_b)
 
+    # Calc
     wasserstein_dist = wasserstein_distance(data_a, data_b)
     stddev_ab = np.std(np.concatenate([data_a, data_b]))
 
