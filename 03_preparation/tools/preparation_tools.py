@@ -118,4 +118,65 @@ def d_percentage(start, end, decimals=4):
     return diff_pct
 
 
+def better_sample(loc, scale, size, error="dynamic", decimals=6, seed=None,
+                  maximum=10000, verbose=True):
+    """
+    Creates a Gaussian distribution sample using ´np.random.normal´ but
+    controls the error from **mean** and **standard deviation**, keeping
+    it closer to the gap controled by the **error**.
+
+    """
+    # Seed (optional)
+    if(seed != None and isinstance(seed, int) == True):
+        np.random.seed(seed)
+
+
+    # Error
+    if(error == "dynamic"):
+        error = 0.001
+
+
+    # Rolling the dice ;)
+    i = 0
+
+    while(True):
+        sample = np.random.normal(loc=loc, scale=scale, size=size)
+        sample = np.round(sample, decimals=decimals)
+
+        sample_mean = np.mean(sample)
+        sample_stddev = np.std(sample)
+
+
+        # Test conditions
+        if(sample_mean >= (loc - error) and sample_mean <= (loc + error) and
+           sample_stddev >= (scale - error) and sample_stddev <= (scale + error)):
+            break
+
+
+        i = i + 1
+
+        # Upgrade the error, make it bigger because the conditions does not fit
+        # the loc, scale and error.
+        if(i == maximum):
+            error_list = [0.001, 0.01, 0.1, 0.5, 1, 2, 5, 10, 20, 50, 100]
+
+            try:
+                pos = error_list.index(error)
+
+            except ValueError:
+                error = error_list[min(range(0, len(error_list)), key=lambda i: abs(error_list[i] - error))]
+                pos = error_list.index(error)
+
+
+            pos = pos + 1
+            error = error_list[pos]
+            i = 0
+
+            if(verbose == True):
+                print(f" > Message: Error range updated. {error=}")
+
+
+    return sample
+
+
 # end
