@@ -103,7 +103,7 @@ def time_elapsed(time_in, decimals=3, verbose=True):
     return elapsed
 
 
-def d_percentage(start, end, decimals=4):
+def d_percentage(start, end, decimals=None):
     """
     Returns the differential percentage between **start** and **end**.
 
@@ -112,7 +112,10 @@ def d_percentage(start, end, decimals=4):
                   start
     
     """
-    diff_pct = np.round(((end - start) / start), decimals=decimals)
+    diff_pct = ((end - start) / start)
+
+    if(decimals != None and isinstance(decimals, int) == True):
+        diff_pct = np.round(diff_pct, decimals=decimals)
 
 
     return diff_pct
