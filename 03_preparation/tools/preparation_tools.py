@@ -179,4 +179,19 @@ def better_sample(loc, scale, size, error="dynamic", decimals=6, seed=None,
     return sample
 
 
+def gaussian_curve(loc, scale, size=1000, slide=4):
+    """
+    Returns x and y for a perfect gaussian curve fitted (Normal).
+    Using the function: ´st.norm.pdf()`
+
+    More info:
+    https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html
+
+    """
+    x = np.linspace(start=(loc - (slide * scale)), stop=(loc + (slide * scale)), num=size)
+    y = st.norm.pdf(x, loc=loc, scale=scale)
+
+    return x, y
+
+
 # end
