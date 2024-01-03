@@ -7,7 +7,7 @@
 
 
 # Insights, improvements and bugfix
-#
+# 01 - Allow the user to inform the binning strategy name
 
 
 # Libraries
@@ -44,5 +44,62 @@ def target_split(DataFrame, target):
     return x, y
 
 
+def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
+                                random_state=None, shuffle=True):
+    """
+    Performs Stratified KFold with Continuous target.
+
+    """
+    # Data preparation
+    data = DataFrame.copy()
+
+    # Uses **target** continous to split into bins (Eureca)
+    x, y = target_split(data, target=target)
+
+    # Define the number of minimum bins
+    bins_list = list()
+    no_bins = np.inf
+    bins_strategy = ["sturges", "fd", "doane", "scott", "stone", "rice", "sqrt"]
+
+    for bs in bins_strategy:
+        _, bs_edges = np.histogram(y, bins=bs)
+
+        if(bs_edges.size < no_bins):
+            no_bins = bs_edges.size
+            bins_edges = bs_edges[:]
+
+      
+    # Creating segments from the continuous target
+    segment_list = list()
+
+    for value in y:
+        segment = np.sum(value > bin_edges)
+
+        if(segment == 0):
+            # Solving the problem of creating bins with number 0 and
+            # colapsing it with the first one bin.
+            segment = 1
+
+        segment_list.append(segment)
+
+
+    data["bin"] = segment_list
+
+
+    # Stratified KFold
+    # Uses the bin column as the target as categories
+    x, y = target_split(data, target="bin")
+
+    skf = StratifiedKFold(n_splits=n_splits, random_state=random_state, shuffle=shuffle)
+    skf.get_n_splits(x, y)
+
+    train_test_index = list()
+    for train_index, test_index in skf.split(x, y):
+        train_test_index.append((train_index, test_index))
+
+
+    return train_test_index
+
+    
 # end
 
