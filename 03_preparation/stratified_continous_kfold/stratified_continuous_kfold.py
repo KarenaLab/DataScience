@@ -73,7 +73,7 @@ def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
     segment_list = list()
 
     for value in y:
-        segment = np.sum(value > bin_edges)
+        segment = np.sum(value > bins_edges)
 
         if(segment == 0):
             # Solving the problem of creating bins with number 0 and
