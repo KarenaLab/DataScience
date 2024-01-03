@@ -78,6 +78,8 @@ def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
         if(segment == 0):
             # Solving the problem of creating bins with number 0 and
             # colapsing it with the first one bin.
+            # Technically will be only one value that will do it.
+            # Vorsprung durch Technik
             segment = 1
 
         segment_list.append(segment)
