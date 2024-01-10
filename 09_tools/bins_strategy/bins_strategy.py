@@ -23,7 +23,7 @@ warnings.filterwarnings("ignore")
 
 
 # ----------------------------------------------------------------------
-def bins_calculation(data, stat="median", verbose=False):
+def bins_calculation(data):
     """
     Calculates the various binning strategy and returns the selected
     stat (median*, min, max or mean).
@@ -37,14 +37,28 @@ def bins_calculation(data, stat="median", verbose=False):
     data = data[~np.isnan(data)]        # Removing NaNs
 
     # Binning
-    bins_list = list()
     bins_strategy = ["fd", "doane", "scott", "stone", "rice", "sturges", "sqrt"]
+    bins_list = list()
 
     for bs in bins_strategy:
         bins_count, bins_edges = np.histogram(data, bins=bs)
         bins_list.append(bins_count.size)
 
 
+    bins_calc = dict(zip(bins_strategy, bins_list))
+
+    return bins_calc
+
+
+def bins_select(bins_dict, stat="median", verbose=True):
+    """
+
+
+    """
+    # Data preparation
+    bins_strategy = np.array(list(bins_dict.keys()))
+    bins_list = np.array(list(bins_dict.values()))
+    
     # Select statistic
     if(stat == "median"):
         response = int(np.median(bins_list))
@@ -66,4 +80,4 @@ def bins_calculation(data, stat="median", verbose=False):
         
 
     return response
-
+    
