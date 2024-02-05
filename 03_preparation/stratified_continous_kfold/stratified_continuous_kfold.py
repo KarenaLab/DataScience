@@ -9,6 +9,8 @@
 
 # Insights, improvements and bugfix
 # 01 - Allow the user to inform the binning strategy name
+# 02 - Move ´bin_strategy´ out for a callable function
+#
 
 
 # Libraries
@@ -26,7 +28,7 @@ warnings.filterwarnings("ignore")
 
 
 # ----------------------------------------------------------------------
-def target_split(DataFrame, target):
+def _target_split(DataFrame, target):
     """
     Splits variable(s) and **target** from the **DataFrame**
 
@@ -49,13 +51,14 @@ def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
                                 random_state=None, shuffle=True):
     """
     Performs Stratified KFold with Continuous target.
+    Returns a list with **n_splits** tuples with: (folder no, train_index, test_index)
 
     """
     # Data preparation
     data = DataFrame.copy()
 
     # Uses **target** continous to split into bins (Eureca)
-    x, y = target_split(data, target=target)
+    x, y = _target_split(data, target=target)
 
     # Define the number of minimum bins
     bins_list = list()
