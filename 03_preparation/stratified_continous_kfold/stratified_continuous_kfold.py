@@ -3,7 +3,8 @@
 
 # Versions
 # 01 - Jan 03rd, 2024 - Starter
-# 02 -
+#      Fev 05th, 2024 - Adjust return for a standard of a tuple
+#
 
 
 # Insights, improvements and bugfix
@@ -95,12 +96,13 @@ def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
     skf = StratifiedKFold(n_splits=n_splits, random_state=random_state, shuffle=shuffle)
     skf.get_n_splits(x, y)
 
-    train_test_index = list()
-    for train_index, test_index in skf.split(x, y):
-        train_test_index.append((train_index, test_index))
+    kf_indexes = list()
+    for i, (train_index, test_index) in enumerate(skf.split(x, y)):
+        fold = (i, train_index, test_index)
+        kf_indexes.append(fold)
 
 
-    return train_test_index
+    return kf_indexes
 
     
 # end
