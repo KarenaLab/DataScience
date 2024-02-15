@@ -3,7 +3,8 @@
 
 # Versions
 # 01 - Jul 27th, 2023 - Starter
-# 02 -
+# 02 - Fev 14th, 2024 - Add function ´categoric_to_bars´
+#
 
 
 # Insights, improvements and bugfix
@@ -195,6 +196,25 @@ def gaussian_curve(loc, scale, size=1000, slide=4):
     y = st.norm.pdf(x, loc=loc, scale=scale)
 
     return x, y
+
+
+def categoric_to_bars(Series):
+    """
+    Gets a Series (Pandas column)
+
+    """
+    # Data preparation
+    data = np.array(Series)
+
+    # Bars
+    x_list = np.unique(data)
+    y_list = np.array([])
+
+    for x in x_list:
+        y_list = np.append(y_list, np.count_nonzero(data == x))
+
+
+    return x_list, y_list
 
 
 # end
