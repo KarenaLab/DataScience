@@ -26,13 +26,13 @@ from sklearn.model_selection import StratifiedKFold
 warnings.filterwarnings("ignore")
 
 
-
 # ----------------------------------------------------------------------
 def _target_split(DataFrame, target):
     """
     Splits variable(s) and **target** from the **DataFrame**
 
     """
+    # Variables and **target** preparation
     columns = DataFrame.columns.to_list()
     
     if(columns.count(target) == 1):
@@ -42,7 +42,6 @@ def _target_split(DataFrame, target):
     else:
         x = np.nan
         y = np.nan
-
 
     return x, y
 
@@ -94,7 +93,7 @@ def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
 
     # Stratified KFold
     # Uses the bin column as the target as categories
-    x, y = target_split(data, target="bin")
+    x, y = _target_split(data, target="bin")
 
     skf = StratifiedKFold(n_splits=n_splits, random_state=random_state, shuffle=shuffle)
     skf.get_n_splits(x, y)
@@ -104,9 +103,7 @@ def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
         fold = (i, train_index, test_index)
         kf_indexes.append(fold)
 
-
     return kf_indexes
 
     
 # end
-
