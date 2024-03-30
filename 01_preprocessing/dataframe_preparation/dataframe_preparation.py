@@ -90,6 +90,12 @@ def nan_preparation(DataFrame, columns=None):
     return None
 
 
+def remove_nan(DataFrame, verbose=True):
+    pass
+
+    return None
+
+
 def remove_duplicates(DataFrame, verbose=True):
     """
     Remove duplicates from **DataFrame**
