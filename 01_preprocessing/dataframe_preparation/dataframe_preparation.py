@@ -97,7 +97,7 @@ def remove_duplicates(DataFrame, verbose=True):
     return data
 
 
-def nan_counter(DataFrame, del_threshold=100, verbose=True):
+def count_nan(DataFrame, del_threshold=100, verbose=True):
     """
     Counts the number of NaN  (empty) at rows and delete row if the
     percentage of NaNs is higher than a given threshold.
@@ -143,7 +143,7 @@ def nan_counter(DataFrame, del_threshold=100, verbose=True):
     return data
 
 
-def distinct_counter(DataFrame, columns=None, verbose=True):
+def count_unique(DataFrame, columns=None, verbose=True):
     """
     Counts the number of distinct values for all columns of DataFrame, or
     given columns.
@@ -154,7 +154,7 @@ def distinct_counter(DataFrame, columns=None, verbose=True):
     if(columns == None):
         columns = data.columns.tolist()
 
-    distinct_list = []
+    distinct_list = list()
     
     for col in columns:
         distinct = len(data[col].unique())
@@ -167,7 +167,7 @@ def distinct_counter(DataFrame, columns=None, verbose=True):
     return distinct_list
         
 
-def split_target(DataFrame, target):
+def target_split(DataFrame, target):
     """
     Splits **Dataframe** into x (variables) and y (target).
 
@@ -197,7 +197,6 @@ def sample_test(array, size, seed=None, verbose=True):
     # If need, select a seed
     if(seed != None):
         np.random.seed(seed)
-
 
     if(size > 0 and size <= len(array)):
         # Array selection, without repetition
