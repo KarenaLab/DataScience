@@ -17,22 +17,17 @@
 
 
 # Libraries
+import os
+from collections import namedtuple
+
 import numpy as np
 import pandas as pd
+import scipy.stats as st
 
 
-def read_csv(filename, sep=",", encoding="utf-8"):
-    """
-    Automates the dataframe reading.
+# Functions -------------------------------------------------------------
 
-    """
-    data = pd.read_csv(filename, sep=sep, encoding=encoding)
-
-
-    return data
-
-
-def col_preparation(DataFrame, method=None, verbose=True):
+def col_preparation(DataFrame, method=None, verbose=False):
     """
     Standartize columns names.
 
@@ -45,6 +40,7 @@ def col_preparation(DataFrame, method=None, verbose=True):
     data = DataFrame.copy()
     method = method.lower()
 
+    cols_name = dict()
     for col in data.columns:
         new_col = col[:]
 
@@ -55,10 +51,10 @@ def col_preparation(DataFrame, method=None, verbose=True):
                             "?": "",
                             "[": "",
                             "]": ""}
-        # add new items here: item to be replaced and new item.
 
         for old, new in list(zip(items_to_replace.keys(), items_to_replace.values())):
             new_col = new_col.replace(old, new)
+
 
         # Applying method name style
         if(method == "lower"):
@@ -68,18 +64,17 @@ def col_preparation(DataFrame, method=None, verbose=True):
             new_col = new_col.upper()
 
         elif(method == "title"):
-            new_col = new_col.title()        
+            new_col = new_col.title()
 
-        if(new_col != col):
-            data = data.rename(columns={col: new_col})
+        cols_name[col] = new_col 
 
-            if(verbose == True):
-                print(f" > column {col} renamed for **{new_col}**")
+        if(verbose == True):
+            print(f" > column {col} renamed for **{new_col}**")
 
+    data = data.rename(columns=cols_name)
 
     if(verbose == True):
         print("")
-
         
     return data
 
