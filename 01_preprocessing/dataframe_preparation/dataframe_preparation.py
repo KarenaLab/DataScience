@@ -44,6 +44,7 @@ def col_preparation(DataFrame, method=None, verbose=False):
     for col in data.columns:
         new_col = col[:]
 
+    # Dictionary with characters to be replaced or changed
         items_to_replace = {"-": "_",
                             " ": "_",
                             "(": "",
@@ -66,10 +67,10 @@ def col_preparation(DataFrame, method=None, verbose=False):
         elif(method == "title"):
             new_col = new_col.title()
 
-        cols_name[col] = new_col 
-
         if(verbose == True):
             print(f" > column {col} renamed for **{new_col}**")
+            
+        cols_name[col] = new_col 
 
     data = data.rename(columns=cols_name)
 
@@ -77,6 +78,16 @@ def col_preparation(DataFrame, method=None, verbose=False):
         print("")
         
     return data
+
+
+def nan_preparation(DataFrame, columns=None):
+    """
+    Substitutes some values to np.nan.
+
+    """
+    pass
+
+    return None
 
 
 def remove_duplicates(DataFrame, verbose=True):
