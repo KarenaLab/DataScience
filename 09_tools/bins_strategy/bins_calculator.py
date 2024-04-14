@@ -60,3 +60,19 @@ def bins_calculator(data, stat="median", verbose=True):
 
     return no_bins
 
+
+def bins_alloptions(data):
+    """
+
+
+    """
+    # Data preparation
+    data = np.array(data)
+    data = data[~np.isnan(data)]
+
+    bins_list = ["fd", "doane", "scott", "stone", "rice", "sturges", "sqrt"]
+    bins = {x: np.histogram_bin_edges(data, bins=x).size for x in bins_list}
+
+    return bins
+    
+    
