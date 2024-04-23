@@ -9,6 +9,7 @@ List of functions:
 * remove_nan:
 * remove_duplicates:
 * count_nan:
+* count_duplicates:
 * count_unique:
 * target_split:
 * sample_test:
