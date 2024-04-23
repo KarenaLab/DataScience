@@ -10,4 +10,6 @@ Respectfully I do not agree with **better**. Better is very open and wide, somet
 
 However I need to say that most of all pre-made tools from other libraries will do it **faster**. but... who said these tailormade tools will be going to production? These tools does not aims to go for production, at production I recommend to use functions from libraries and create a pipeline, these tools are specific for modeling, tunning, exploring or studying phase of the project.
 
+These **taylormade** tools are for experiments (remember, we are are KarenaLab), here we are commited to the explore, go deeper in all hidden layers.
+
 If you wish to see these tools working and its advantages, take a look at [projects](https://github.com/KarenaLab/Projects) and [experiments](https://github.com/KarenaLab/Experiments).
