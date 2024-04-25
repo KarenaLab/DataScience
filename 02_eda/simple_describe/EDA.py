@@ -7,9 +7,10 @@
 
 
 # Insights, improvements and bugfix
-# Choose what type of information to return
-# Create a friendly print for results using **select**
-# 
+# 1- Choose what type of information to return
+# 2- Create a friendly print for results using **select**
+# 3- Add the separation of numeric and categoric
+# 4- 
 
 
 # Libraries
