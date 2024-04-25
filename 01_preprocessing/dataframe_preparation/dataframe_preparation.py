@@ -1,4 +1,3 @@
-
 # Data Preparation [P263] ---------------------------------------------
 
 # Versions
@@ -91,7 +90,13 @@ def nan_preparation(DataFrame, columns=None):
 
 
 def remove_nan(DataFrame, verbose=True):
+    """
+    Remove nan from **Dataframe**
+
+    """
     pass
+    # Function to work similarly like **remove_duplicates**
+    
 
     return None
 
