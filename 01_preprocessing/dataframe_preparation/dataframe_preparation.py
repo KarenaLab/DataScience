@@ -2,9 +2,10 @@
 
 # Versions
 # 01 - Feb 07th, 2023 - Starter
-# 02 - May 25th, 2023 - Adjusting nan_counter
-# 02 - May 25th, 2023 - Adding distinct_counter
-# 03 - 
+# 02 - May 25th, 2023 - Adjust nan_counter
+# 02 - May 25th, 2023 - Add distinct_counter
+#      Jun 13th, 2024 - Add unidecode function to remove accent
+#
 
 
 # Insights
@@ -18,6 +19,8 @@
 # Libraries
 import os
 from collections import namedtuple
+
+from unidecode import unidecode
 
 import numpy as np
 import pandas as pd
@@ -42,6 +45,7 @@ def col_preparation(DataFrame, method=None, verbose=False):
     cols_name = dict()
     for col in data.columns:
         new_col = col[:]
+        new_col = unidecode(new_col)
 
     # Dictionary with characters to be replaced or changed
         items_to_replace = {"-": "_",
