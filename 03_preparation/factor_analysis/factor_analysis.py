@@ -1,8 +1,8 @@
-# Name [Pxxx]
-# (optional) Short description
+# Name [P428]
+# Factor Analyzer and PCA module
 
 # Versions
-# 01 - Date - Starter
+# 01 - Aug 10th, 2024 - Starter
 # 02 -
 
 
@@ -11,23 +11,11 @@
 
 
 # Libraries
-from collections import namedtuple
-
 import numpy as np
 import pandas as pd
 import scipy.stats as st
-
-import matplotlib.pyplot as plt
-
+import factor_analyzer as fa
 
 
 # ----------------------------------------------------------------------
-def name():
-    """
-    Description of the function
-    Information about variables and **kwargs
-
-    """
-
-    return None    
-
+    
