@@ -217,4 +217,14 @@ def categoric_to_bars(Series):
     return x_list, y_list
 
 
+def dict_invert(dictionary):
+    """
+    Swaps keys and values from a dictionary
+
+    """
+    inverted = {v: k for k, v in dictionary.items()}
+
+    return inverted
+
+    
 # end
