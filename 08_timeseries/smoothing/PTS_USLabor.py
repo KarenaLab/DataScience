@@ -81,6 +81,5 @@ def month_number(string, output="numeric"):
 # Program --------------------------------------------------------------
 df = load_dataset()
 
-df["unemployment_rate"] = moving_average(df["unemployment_rate"], window=3)
-
-
+df["moving_avg"] = moving_average(df["unemployment_rate"], window=3)
+df["ewma"] = exponential(x=df.index, y=df["unemployment_rate"], alpha=0.5)
