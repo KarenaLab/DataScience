@@ -68,12 +68,17 @@ def insert_nans(DataFrame, columns=None, percentage=0, seed=314):
     return DataFrame
 
 
-def fill_mean(DataFrame, columns):
+def fill_mean(DataFrame, columns="all"):
     """
     Time Series - Imputing techniques
     Fill NaNs with the mean of the column.
 
     """
+    # Columns preparation
+    if(columns == "all" or columns == None):
+        columns = list(DataFrame.columns)
+
+    # Data imputation    
     for col in columns:
         mean = np.mean(DataFrame[col].dropna())
         DataFrame[col] = fill_value(DataFrame[col], mean)
