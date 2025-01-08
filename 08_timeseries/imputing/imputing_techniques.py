@@ -86,12 +86,17 @@ def fill_mean(DataFrame, columns="all"):
     return DataFrame
 
 
-def fill_median(DataFrame, columns):
+def fill_median(DataFrame, columns="all"):
     """
     Time Series - Imputing techniques.
     Fill NaNs with the median of the column.
 
     """
+    # Columns preparation
+    if(columns == "all" or columns == None):
+        columns = list(DataFrame.columns)
+
+    # Data imputation 
     for col in columns:
         median = np.median(DataFrame[col].dropna())
         DataFrame[col] = fill_value(DataFrame[col], median)
