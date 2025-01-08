@@ -104,12 +104,17 @@ def fill_median(DataFrame, columns="all"):
     return DataFrame
 
 
-def fill_min(DataFrame, columns):
+def fill_min(DataFrame, columns="all"):
     """
     Time Series - Imputing techniques.
     Fill NaNs with the minimum value of the column.
 
     """
+    # Columns preparation
+    if(columns == "all" or columns == None):
+        columns = list(DataFrame.columns)
+
+    # Data imputation 
     for col in columns:
         minimum = np.min(DataFrame[col].dropna())
         DataFrame[col] = fill_value(DataFrame[col], minimum)
@@ -117,12 +122,17 @@ def fill_min(DataFrame, columns):
     return DataFrame
 
 
-def fill_max(DataFrame, columns):
+def fill_max(DataFrame, columns="all"):
     """
     Time Series - Inputing techniques.
     Fill NaNs with the maximum value of the column.
 
     """
+    # Columns preparation
+    if(columns == "all" or columns == None):
+        columns = list(DataFrame.columns)
+
+    # Data imputation 
     for col in columns:
         maximum = np.max(DataFrame[col].dropna())
         DataFrame[col] = fill_value(DataFrame[col], maximum)
@@ -130,19 +140,24 @@ def fill_max(DataFrame, columns):
     return DataFrame
 
 
-def fill_zeros(DataFrame, columns):
+def fill_zeros(DataFrame, columns="all"):
     """
     Time Series - Imputing techniques.
     Fill NaNs with 0 (zero).
 
     """
+    # Columns preparation
+    if(columns == "all" or columns == None):
+        columns = list(DataFrame.columns)
+
+    # Data imputation 
     for col in columns:
         DataFrame[col] = fill_value(DataFrame[col], 0)
 
     return DataFrame
 
 
-def fill_interpolate(DataFrame, columns, method="linear", order=None):
+def fill_interpolate(DataFrame, columns="all", method="linear", order=None):
     """
     Time Series - Imputing techniques.
     Fill NaNs with interpolation with neighbours values.
@@ -154,13 +169,18 @@ def fill_interpolate(DataFrame, columns, method="linear", order=None):
     https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html
 
     """
+    # Columns preparation
+    if(columns == "all" or columns == None):
+        columns = list(DataFrame.columns)
+
+    # Data imputation 
     for col in columns:
         DataFrame[col] = DataFrame[col].interpolate(method=method, order=order)
 
     return DataFrame
 
 
-def fill_forward(DataFrame, columns):
+def fill_forward(DataFrame, columns="all"):
     """
     Time Series - Imputing techniques
     Fill NaNs values by propagating the last valid observation to next
@@ -170,13 +190,18 @@ def fill_forward(DataFrame, columns):
     https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html
 
     """
+    # Columns preparation
+    if(columns == "all" or columns == None):
+        columns = list(DataFrame.columns)
+
+    # Data imputation 
     for col in columns:
         DataFrame[col] = DataFrame[col].ffill()
 
     return DataFrame
 
 
-def fill_backward(DataFrame, columns):
+def fill_backward(DataFrame, columns="all"):
     """
     Time series - Imputing techniques
     Fill NaNs values by using the next valid obervation to fill the gap.
@@ -185,6 +210,8 @@ def fill_backward(DataFrame, columns):
     https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.bfill.html
 
     """
+
+    # Data imputation 
     for col in columns:
         DataFrame[col] = DataFrame[col].bfill()
 
