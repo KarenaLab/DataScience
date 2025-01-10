@@ -25,10 +25,6 @@
 # Libraries
 import numpy as np
 import pandas as pd
-import scipy.stats as st
-
-import matplotlib.pyplot as plt
-
 
 
 # ----------------------------------------------------------------------
@@ -210,6 +206,9 @@ def fill_backward(DataFrame, columns="all"):
     https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.bfill.html
 
     """
+    # Columns preparation
+    if(columns == "all" or columns == None):
+        columns = list(DataFrame.columns)
 
     # Data imputation 
     for col in columns:
