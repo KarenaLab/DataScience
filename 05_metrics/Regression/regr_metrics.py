@@ -1,4 +1,4 @@
-# Regression Metrics [P201] --------------------------------------------
+# [P201] Regression Metrics --------------------------------------------
 
 # Libraries
 import numpy as np
@@ -21,8 +21,8 @@ from sklearn.metrics import r2_score
 # 04 - Sep 17th, 2023 - Separate **Data Preparation**,
 #                       Bias and SMAPE as user friendly function, could be
 #                           called separately,
-#      Sep 17th, 2023 - Added F-beta score (KarenaLab)
-#      Oct 18th, 2023 - Added CCC (KarenaLab)
+#      Sep 17th, 2023 - Added F-beta score
+#      Oct 18th, 2023 - Added CCC
 #
 
 
@@ -32,22 +32,7 @@ from sklearn.metrics import r2_score
 # Warning messages as a function
 # 
 
-
-def _array_prep(array, dropna=True):
-    """
-    (( Internal function ))
-    Standartize arrays as numpy array format and **dropna** values.
-
-    """
-    if(isinstance(array, np.ndarray) == False):
-        array = np.array(array)
-
-    if(dropna == True):
-        array = array[~np.isnan(array)]
-
-    return array
-
-
+# Functions
 def regr_metrics(y_true, y_pred, metrics="all", verbose=True):
     """
     Metrics for Regressor Models.
@@ -228,6 +213,21 @@ def fb_score(metric_1, metric_2, beta=1, verbose=True):
 
 
     return score
+
+
+def _array_prep(array, dropna=True):
+    """
+    (( Internal function ))
+    Standartize arrays as numpy array format and **dropna** values.
+
+    """
+    if(isinstance(array, np.ndarray) == False):
+        array = np.array(array)
+
+    if(dropna == True):
+        array = array[~np.isnan(array)]
+
+    return array
 
 
 # end
