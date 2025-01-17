@@ -24,6 +24,8 @@ def mape(y_true, y_pred):
     Mean Absolute Percentage Error (MAPE) stands for the percentual
     absolute error of the prediction (or forecast).
     [MLTSF p.47]
+
+    Important: Result is NOT multiplied by 100. Range: [0, 1]
     
     More info:
     https://en.wikipedia.org/wiki/Mean_absolute_percentage_error
@@ -35,8 +37,26 @@ def mape(y_true, y_pred):
     y_pred = np.array(y_pred)
 
     # Calculation
-    mape = np.mean((np.abs(y_true - y_pred) / y_true))
-    mape = mape * 100
-    
-    return mape  
+    result = np.mean((np.abs(y_true - y_pred) / y_true))
+        
+    return result  
 
+
+def gmrae(y_true, y_pred):
+    """
+
+
+    """
+    pass
+
+    return None
+
+
+def smape(y_true, y_pred):
+    """
+
+
+    """
+    pass
+
+    return None
