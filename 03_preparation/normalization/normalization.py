@@ -37,6 +37,7 @@ def scaler_minmax(Series):
         x_scaled = (x - x_min) / (x_max - x_min)
         return x_scaled
 
+
     Series = Series.apply(lambda x: minmax(x, x_min, x_max))
    
     return Series, params
@@ -64,6 +65,7 @@ def scaler_standard(Series):
         x_scaled = (x - mean) / stddev
         return x_scaled
 
+
     Series = Series.apply(lambda x: standard(x, x_mean, x_stddev))
 
     return Series, params 
@@ -84,6 +86,7 @@ def inv_scaler_minmax(Series, params):
         x = ((maximum - minimum) * x_scaled) + minimum
         return x
 
+
     Series = Series.apply(lambda xs: inv_minmax(xs, x_min, x_max))
 
     return Series
@@ -103,9 +106,8 @@ def inv_scaler_standard(Series, params):
         x = (x_scaled * stddev) + mean
         return x
 
+
     Series = Series.apply(lambda xs: inv_standard(xs, x_mean, x_stddev))
 
     return Series
-
-
 
