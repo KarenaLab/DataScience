@@ -10,15 +10,62 @@
 
 
 # Libraries
+import os
+import sys
+import warnings
+
 import numpy as np
 import pandas as pd
-import scipy.stats as st
+import statsmodels.api as sm
+import scipy.stats as stats
 
 import matplotlib.pyplot as plt
 
 
 
 # ----------------------------------------------------------------------
+def ts_decomposition(DataFrame, model="additive", filt=None, period=None):
+    """
+    Performs the Time Series decomposition and returns a friendly
+    output to be vizualized, maybe it is the first view of the Time
+    Series data.
+
+    Variables:
+    * model: additive (default) or multiplicative.
+
+    More info:
+    https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.seasonal_decompose.html
+    https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.DecomposeResult.html
+    
+    """
+    # Model check
+    model = model.lower()
+    if(model != "additive" and model != "multiplicative"):
+        model = "additive"
+        warnings.warn('Model Error: Selected model "additive" as default.')
+
+    # Time Series decomposition
+    decomposition = sm.tsa.seasonal_decompose(DataFrame, model=model, filt=filt, period=period)
+
+    observed = decomposition.observed
+    trend = decomposition.trend
+    seasonal = decomposition.seasonal
+    residual = decomposition.resid
+    weights = decomposition.weights
+
+    # Return decomposition as a dataframe
+    data = pd.DataFrame(data=[])
+    for info in [observed, trend, seasonal, residual]:
+        data[info.name] = info
+
+    # Append `weights` only if values are different from scalar (1).
+    if(len(weights.unique()) > 1):
+        data[weights.name] = weights
+        
+
+    return data
+
+
 def mape(y_true, y_pred):
     """
     Mean Absolute Percentage Error (MAPE) stands for the percentual
@@ -41,22 +88,3 @@ def mape(y_true, y_pred):
         
     return result  
 
-
-def gmrae(y_true, y_pred):
-    """
-
-
-    """
-    pass
-
-    return None
-
-
-def smape(y_true, y_pred):
-    """
-
-
-    """
-    pass
-
-    return None
