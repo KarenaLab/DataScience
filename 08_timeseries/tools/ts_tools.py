@@ -105,6 +105,57 @@ def create_lagged_features(DataFrame, variable, max_lag, freq):
     return DataFrame
 
 
+def create_rolling_window_stats(DataFrame, variable, window, stats=["min", "mean", "max"],
+                                decimals=None):
+    """
+    Compute statistics on the values from a given **variable** by defining
+    a range called *window* that means this number of samples before the
+    sample used.
+
+    Variables
+    * DataFrame: Pandas dataframe where data is,
+    * variable: Single variable (as a string) to be windowed,
+    * window: integer number to consider as a past window,
+    * stats: Statistics to calculate the rolling window values.
+             Default is: ["min, "mean", "max"]
+
+    List of stats available:
+
+
+    More info:
+    https://pandas.pydata.org/pandas-docs/stable/reference/window.html
+    https://pandas.pydata.org/pandas-docs/stable/user_guide/window.html
+    
+    """
+    # Window treatment
+    info = DataFrame[variable]
+    info = info.shift(window-1)
+    info = info.rolling(window=window)
+
+    # Create Windowed response
+    data = pd.DataFrame(data=[])
+    for s in stats:
+        if(s == "min"):
+            data[f"min_w{window}"] = info.mean()
+
+        elif(s == "mean"):
+            data[f"mean_w{window}"] = info.min()
+
+        elif(s == "max"):
+            data[f"max_w{window}"] = info.max()
+
+
+    # Apply rounded values (if called):
+    if(isinstance(decimals, int) == True):
+        for col in data.columns:
+            data[col] = np.round(data[col], decimals=decimals)
+
+    # Append the final target
+    data[variable] = DataFrame[variable]
+
+    return data
+
+
 def mape(y_true, y_pred):
     """
     Mean Absolute Percentage Error (MAPE) stands for the percentual
