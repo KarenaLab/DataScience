@@ -156,6 +156,39 @@ def create_rolling_window_stats(DataFrame, variable, window, stats=["min", "mean
     return data
 
 
+def create_expanded_window_stats(DataFrame, variable, stats=["min", "mean", "max"], decimals=None):
+    """
+    Compute statistics that include all previous data.
+
+    """
+    # Window treatment
+    info = DataFrame[variable]
+    info = info.expanding()
+
+    # Create Windowed response
+    data = pd.DataFrame(data=[])
+    for s in stats:
+        if(s == "min"):
+            data["min_expand"] = info.mean()
+
+        elif(s == "mean"):
+            data["mean_expand"] = info.min()
+
+        elif(s == "max"):
+            data["max_expand"] = info.max()
+
+
+    # Apply rounded values (if called):
+    if(isinstance(decimals, int) == True):
+        for col in data.columns:
+            data[col] = np.round(data[col], decimals=decimals)
+
+    # Append the final target
+    data[variable] = DataFrame[variable]
+
+    return data
+
+
 def mape(y_true, y_pred):
     """
     Mean Absolute Percentage Error (MAPE) stands for the percentual
