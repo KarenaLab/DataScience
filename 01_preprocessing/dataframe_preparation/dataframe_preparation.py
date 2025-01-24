@@ -28,7 +28,6 @@ import scipy.stats as st
 
 
 # Functions -------------------------------------------------------------
-
 def col_preparation(DataFrame, method=None, verbose=False):
     """
     Standartize columns names.
@@ -240,4 +239,3 @@ def sample_test(array, size, seed=None, verbose=True):
 
 
 # end
-    
