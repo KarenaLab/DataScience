@@ -28,7 +28,7 @@ def standardized_wasserstein_dist(data_a, data_b):
     data_a = np.array(data_a)
     data_b = np.array(data_b)
 
-    # Calc
+    # Calculation
     wasserstein_dist = wasserstein_distance(data_a, data_b)
     stddev_ab = np.std(np.concatenate([data_a, data_b]))
 
