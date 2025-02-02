@@ -19,12 +19,13 @@ import scipy.stats as st
 def bootstrap_with_mean(array, size=10, repeat=200, seed=None):
     """
     Algorithm to perform Bootstrap resampling of the mean.
+
     Steps:
-    1. Draw a sample value with replacement (size)
-    2. Calculate the mean of the sample,
-    3. Repeat 1~2 steps (repeat)
+    1. Draw a sample value with replacement with **size** pct,
+    2. Calculate the mean of that sample,
+    3. **Repeat** 1~2 steps,
     4. Calculate
-       a. Calc the standard deviation (and standard error),
+       a. Calc the mean, standard deviation (and standard error),
        b. Generate histogram and/or boxplot,
        c. Find a confidence interval.
 
