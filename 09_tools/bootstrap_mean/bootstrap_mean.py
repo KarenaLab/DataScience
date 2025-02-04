@@ -84,3 +84,5 @@ def confidence_interval(data, level=0.95):
 
     return [lower, upper]
 
+
+# end
