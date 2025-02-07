@@ -1,8 +1,7 @@
-### DataScience
------
+## DataScience
 
 A toolbox for a Data Science, most of tools are **tailormade** for my needs and works with other scripts.
-The good point that these tools shows how the magic happens, on the other hand, maybe these tools will need an adjust for your needs.
+The good point that these tools shows how the magic happens; on the other hand, maybe these tools will need an adjust for your needs.
 
 Sometimes, or most of times, people ask me why a tailormade tool if *scikit-learn* or *scipy* (for example) do it **better** and **faster**.
 
@@ -13,3 +12,8 @@ However I need to say that most of all pre-made tools from other libraries will 
 These **taylormade** tools are for experiments (remember, we are are KarenaLab), here we are commited to the explore, go deeper in all hidden layers.
 
 If you wish to see these tools working and its advantages, take a look at [projects](https://github.com/KarenaLab/Projects) and [experiments](https://github.com/KarenaLab/Experiments).
+
+
+-------
+Last update: Feb 05th, 2025.
+
