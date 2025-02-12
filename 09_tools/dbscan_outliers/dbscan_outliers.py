@@ -1,8 +1,7 @@
-# [Pxxx] Project name
-# (optional) Short description
+# [P479] DBSCAN for outliers detection
 
 # Versions
-# 01 - Date - Starter
+# 01 - Feb 12th, 2025 - Starter
 # 02 -
 
 
@@ -15,12 +14,9 @@ import numpy as np
 import pandas as pd
 import scipy.stats as st
 
-import matplotlib.pyplot as plt
-
-
 
 # ----------------------------------------------------------------------
-def name():
+def dbscan_outliers():
     """
     Description of the function
     Information about variables and **kwargs
