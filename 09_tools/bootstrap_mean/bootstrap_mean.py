@@ -64,7 +64,7 @@ def bootstrap_with_mean(array, size=10, repeat=200, seed=None):
     return answer 
 
 
-def confidence_interval(data, level=0.95):
+def confidence_interval(data, confidence=0.95):
     """
     Check this calc formula
     
@@ -74,9 +74,9 @@ def confidence_interval(data, level=0.95):
 
     # Confidence Interval calc
     mean = np.mean(data)
-    std_err = st.sem(data)
+    se = st.sem(data)
 
-    margin_error = std_err * st.t.ppf((1 + level) / 2, len(data)-1)
+    margin_error = se * st.t.ppf((1 + confidence) / 2, len(data)-1)
 
     lower = mean - margin_error
     upper = mean + margin_error
