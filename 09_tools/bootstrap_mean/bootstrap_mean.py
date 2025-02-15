@@ -66,7 +66,10 @@ def bootstrap_with_mean(array, size=10, repeat=200, seed=None):
 
 def confidence_interval(data, confidence=0.95):
     """
-    Check this calc formula
+    A confidence interval is a range of values that estimates the true
+    value of a population parameter (like a mean) with a certain level
+    of confidence. It gives us an idea of how uncertain we are about our
+    estimate.
     
     """
     # Data preparation
