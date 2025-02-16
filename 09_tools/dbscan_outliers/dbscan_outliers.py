@@ -21,10 +21,12 @@ import matplotlib.pyplot as plt
 
 # ----------------------------------------------------------------------
 def make_DBSCAN(DataFrame, var_1, var_2, eps=0.5, min_samples=5):
+    
     # Selection of data
     data = DataFrame[[var_1, var_2]]
     data = data.dropna()
-    
+
+    # Prepare data scale
     data[var_1] = scaler_standard(data[var_1])
     data[var_2] = scaler_standard(data[var_2])    
     
@@ -85,5 +87,4 @@ def pair_variables(DataFrame, var_1, var_2):
         vector.append([xi, yi])
 
     return vector
-
 
