@@ -34,7 +34,9 @@ def bootstrap_with_mean(array, size=10, repeat=200, seed=None):
             
     """
     # Data preparation
+    array = np.array(array)
     array = array.flatten()
+    
     sample_size = int(array.shape[0] * (size / 100))
 
     # Seed
