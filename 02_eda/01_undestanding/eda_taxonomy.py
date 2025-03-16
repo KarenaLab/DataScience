@@ -37,7 +37,7 @@ def eda_taxonomy(DataFrame, n_unique=15):
         elif(col_type == "object"):
             cols_classification[col] = "Categorical"
 
-        elif(col_type == "bool):
+        elif(col_type == "bool"):
              cols_classification[col] = "Boolean"
 
         else:
