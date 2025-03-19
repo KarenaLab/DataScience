@@ -43,6 +43,7 @@ def eda_taxonomy(DataFrame, n_unique=15, verbose=True):
         else:
             cols_classification[col] = "Unknown"
 
+
     if(verbose == True):
         print_results(cols_classification)
             
@@ -56,13 +57,14 @@ def print_results(dictionary):
 
     """
     # Print header
-    print(f"{'Columns':46s}   {'type':>11s}")
+    print(f"{'Columns':46s}  {'type':>12s}")       # 46 + 2 + 12 = 60
     print("-" * 60)
 
     for col_name, col_type in zip(dictionary.keys(), dictionary.values()):
-        print(f"{col_name:46s}   {col_type:>11s}")
+        print(f"{col_name:46s}  {col_type:>12s}")
 
-
+    print("-" * 60)
+    
     return None
 
       
