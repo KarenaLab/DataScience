@@ -14,11 +14,18 @@ import numpy as np
 import pandas as pd
 
 
-
 # ----------------------------------------------------------------------
 def eda_taxonomy(DataFrame, n_unique=15, verbose=True):
     """
+    Returns a dictionary with column name and its taxonomy classification
+    as: Discrete, Numerical, Categorical, Boolean or unknown. Important
+    to highlight that Unknown could be any kind of data without the right
+    data validation/preparation.
 
+    Arguments:
+    *  DataFrame = Pandas dataframe to be analyzed,
+    *  n_unique = Number of unique values that classify as Discrete,
+    *  verbose = Prints taxonomy classification in screen,
 
     """
     cols_classification = dict()
@@ -29,7 +36,7 @@ def eda_taxonomy(DataFrame, n_unique=15, verbose=True):
         if(col_type == np.int64 or col_type == np.float64):
             unique_vals = DataFrame[col].nunique()
             if(unique_vals < n_unique):
-                cols_classification[col] = "Ordinal"
+                cols_classification[col] = "Discrete"
 
             else:
                 cols_classification[col] = "Numerical"
