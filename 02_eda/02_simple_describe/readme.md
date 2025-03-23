@@ -77,13 +77,16 @@ Exploratory Data Analysis (EDA) serves several critical objectives:
   - Identify patterns in missing values (e.g., missing age entries in a survey dataset),
   - Decide how to deal with them: Imputation (e.g., replacing missing values with the mean or median) or exclusion,
 
-8. **Feature Engineering**
+8. ***Feature Engineering***
 - Create new meaningful variables:
   - **Example**: If you have `Date of Purchase`, create a new feature called `Days Since Last Purchase` to understand customer loyalty,
   - Convert categorical variables into numerical ones using **one-hot encoding** (e.g., convert "Male"/"Female" into separate binary columns),
 
-9. **Time Series Analysis**
+9. ***Time Series Analysis***
 - Explore temporal data:
   - Use line plots to track trends (e.g., monthly stock prices over a year),
   - Check for seasonality (e.g., sales spikes during holiday seasons),
+
+
+Observation: Feature Engineering and Time Series Analysis will be developed in deep in other tools and scripts due its complexity and relevance.
 
