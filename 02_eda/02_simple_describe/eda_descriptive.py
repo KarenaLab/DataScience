@@ -21,16 +21,35 @@ import sys
 sys.path.append(r"c:\python_modules")
 
 from eda_taxonomy import eda_taxonomy
+from plot_histbox import plot_histbox
+from plot_barh import plot_barh
 
 
 
 # ----------------------------------------------------------------------
-def name():
-    """
-    Description of the function
-    Information about variables and **kwargs
-
+def eda_describe(DataFrame, columns=None, n_unique=15):
     """
 
-    return None    
 
+    """
+    # Columns preparation
+    if(columns == None):
+        columns = DataFrame.columns
+
+
+    # Columns taxonomy
+    taxonomy = eda_taxonomy(DataFrame, n_unique=n_unique, verbose=True)
+
+    for t in taxonomy:
+        pass
+
+
+    return None
+        
+
+# Program
+if(__name__ == "__main__"):
+    df = pd.read_csv("auto_mpg.csv", sep=",", encoding="utf-8")
+    
+    
+    
