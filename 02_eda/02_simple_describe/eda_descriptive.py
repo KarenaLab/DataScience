@@ -1,8 +1,7 @@
-# [Pxxx] Project name
-# (optional) Short description
+# [P203] EDA Describe
 
 # Versions
-# 01 - Date - Starter
+# 01 - Mar 22rd, 2025 - Starter
 # 02 -
 
 
@@ -16,6 +15,12 @@ import pandas as pd
 import scipy.stats as stats
 
 import matplotlib.pyplot as plt
+
+# Personal Libraries
+import sys
+sys.path.append(r"c:\python_modules")
+
+from eda_taxonomy import eda_taxonomy
 
 
 
