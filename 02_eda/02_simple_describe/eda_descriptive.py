@@ -38,11 +38,20 @@ def eda_describe(DataFrame, columns=None, n_unique=15):
 
 
     # Columns taxonomy
-    taxonomy = eda_taxonomy(DataFrame, n_unique=n_unique, verbose=True)
+    taxonomy = eda_taxonomy(DataFrame, n_unique=n_unique, verbose=False)
 
-    for t in taxonomy:
-        pass
+    for col, clf in zip(taxonomy.keys(), taxonomy.values()):
+        data = DataFrame[col]
 
+        if(clf == "Numerical" or clf == "Discrete"):
+            print("Num")
+
+        elif(clf == "Categorical" or clf == "Boolean"):
+            print("Cat")
+
+        else:
+            pass
+        
 
     return None
         
@@ -50,6 +59,7 @@ def eda_describe(DataFrame, columns=None, n_unique=15):
 # Program
 if(__name__ == "__main__"):
     df = pd.read_csv("auto_mpg.csv", sep=",", encoding="utf-8")
+    tax = eda_describe(df)
     
-    
+    # end
     
