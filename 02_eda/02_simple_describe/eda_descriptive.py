@@ -44,10 +44,10 @@ def eda_describe(DataFrame, columns=None, n_unique=15):
         data = DataFrame[col]
 
         if(clf == "Numerical" or clf == "Discrete"):
-            print("Num")
+            plot_histbox(data)
 
         elif(clf == "Categorical" or clf == "Boolean"):
-            print("Cat")
+            plot_barh(data)
 
         else:
             pass
