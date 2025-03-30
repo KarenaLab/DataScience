@@ -1,15 +1,20 @@
-# [P229] Train Validation and Test split (holdout)
+# [P229] Train Validation and Test split (holdout) ----------------------
 
 # Libraries
 import numpy as np
 import pandas as pd
 
 
-# Functions
-def split_train_test(DataFrame, train_size=70, seed=None, reset_index=True,
-                     show_source=False):
+# Bugfix, improvements and insights
+# 01 - Implement test_size
+
+
+# Functions -------------------------------------------------------------
+def split_train_test(DataFrame, train_size=70, seed=None, show_source=False):
     """
-    
+    Splits **DataFrame** into Train and Test using the percentage given by
+    **train_size**. If need, also give back the original indexes using the
+    argument **show_source**.
 
     """
     # Train and Test preparation
