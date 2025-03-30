@@ -1,10 +1,5 @@
-# Name [P305] Stratified Continuous KFold
+# [P305] Stratified Continuous KFold
 # Applies the stratified KFold for targets wirh Continuous
-
-# Versions
-# 01 - Jan 03rd, 2024 - Starter
-#      Fev 05th, 2024 - Adjust return for a standard of a tuple
-#
 
 
 # Insights, improvements and bugfix
@@ -27,30 +22,12 @@ warnings.filterwarnings("ignore")
 
 
 # ----------------------------------------------------------------------
-def _target_split(DataFrame, target):
-    """
-    Splits variable(s) and **target** from the **DataFrame**
-
-    """
-    # Variables and **target** preparation
-    columns = DataFrame.columns.to_list()
-    
-    if(columns.count(target) == 1):
-        x = DataFrame.drop(columns=[target])
-        y = DataFrame[target]
-
-    else:
-        x = np.nan
-        y = np.nan
-
-    return x, y
-
-
-def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
+def stratified_continuous_kfold(DataFrame, target, n_splits=5, bins=None,
                                 random_state=None, shuffle=True):
     """
-    Performs Stratified KFold with Continuous target.
-    Returns a list with **n_splits** tuples with: (folder no, train_index, test_index)
+    Performs Stratified KFold with continuous target.
+    Returns a list with **n_splits** tuples with:
+    (folder no, train_index, test_index)
 
     """
     # Data preparation
@@ -82,7 +59,6 @@ def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
             # Solving the problem of creating bins with number 0 and
             # colapsing it with the first one bin.
             # Technically will be only one value that will do it.
-            # Vorsprung durch Technik
             segment = 1
 
         segment_list.append(segment)
@@ -103,7 +79,19 @@ def stratified_continuous_kfold(DataFrame, target, bins=None, n_splits=5,
         fold = (i, train_index, test_index)
         kf_indexes.append(fold)
 
+
     return kf_indexes
+
+
+def _target_split(DataFrame, target):
+    """
+    Splits variable(s) and **target** from the **DataFrame**
+
+    """   
+    x = DataFrame.drop(columns=[target])
+    y = DataFrame[target]
+
+    return x, y
 
     
 # end
