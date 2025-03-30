@@ -1,27 +1,25 @@
+# [P229] Train Validation and Test split (holdout)
 
+# Libraries
 import numpy as np
 import pandas as pd
 
-def split_trainval_test(DataFrame, train_size=80, seed=None):
+
+# Functions
+def split_trainval_test(DataFrame, train_size=70, seed=None):
     """
     
 
     """
-    # Versions ---------------------------------------------------------
-    # 01 - Feb 18th, 2023 - Starter
-    # 02 -
+    # Train and Test preparation
+    n_train = int((DataFrame.shape[0] * (train_size / 100)) + .5)
+    n_test = DataFrame.shape[0] - n_train
 
-    # Insights
-    # Add a Nested KFold function
-    # Add a function that preserves distribution in both sets
-    # Make sure extremes are in the trainval set
-    #
-    
+    print(n_train, n_test)
 
-    # Program ----------------------------------------------------------
-    data = DataFrame.copy()
-    data = data.dropna().reset_index(drop=True)
 
+    """
+    # Seed preparation
     if(seed != None):
         np.random.seed(seed)
 
@@ -34,6 +32,7 @@ def split_trainval_test(DataFrame, train_size=80, seed=None):
 
     data_trainval = data.iloc[0:n_cut, :].reset_index(drop=True)
     data_test = data.iloc[n_cut: , :].reset_index(drop=True)
-
+    """
+    
     return data_trainval, data_test
 
