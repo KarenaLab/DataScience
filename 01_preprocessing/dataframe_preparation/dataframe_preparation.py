@@ -1,19 +1,7 @@
-# Data Preparation [P263] ---------------------------------------------
-
-# Versions
-# 01 - Feb 07th, 2023 - Starter
-# 02 - May 25th, 2023 - Adjust nan_counter
-# 02 - May 25th, 2023 - Add distinct_counter
-#      Jun 13th, 2024 - Add unidecode function to remove accent
-#
+# [P263] Data Preparation ---------------------------------------------
 
 
 # Insights
-
-
-
-# List of Functions
-
 
 
 # Libraries
