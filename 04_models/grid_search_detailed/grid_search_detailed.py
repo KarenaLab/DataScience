@@ -1,8 +1,7 @@
-# [Pxxx] Project name
-# (optional) Short description
+# [P516] Grid Search Detailed
 
 # Versions
-# 01 - Date - Starter
+# 01 - Apr 05th, 2025 - Starter
 # 02 -
 
 
@@ -11,6 +10,8 @@
 
 
 # Libraries
+import itertools
+
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
@@ -18,14 +19,56 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 
 
-
 # ----------------------------------------------------------------------
-def name():
+def grid_search_detailed():
     """
-    Description of the function
-    Information about variables and **kwargs
+
 
     """
+
 
     return None    
 
+"""
+import itertools
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+
+# Sample data
+from sklearn.datasets import load_iris
+data = load_iris()
+X, y = data.data, data.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Define parameter grid
+param_grid = {
+    'n_estimators': [10, 50, 100],
+    'max_depth': [None, 10, 20],
+    'min_samples_split': [2, 5]
+}
+
+# Generate all combinations of parameters
+param_combinations = list(itertools.product(*param_grid.values()))
+
+# Track the best results
+best_score = 0
+best_params = None
+
+# Grid Search
+for combination in param_combinations:
+    params = dict(zip(param_grid.keys(), combination))
+    model = RandomForestClassifier(**params)
+    model.fit(X_train, y_train)
+    predictions = model.predict(X_test)
+    score = accuracy_score(y_test, predictions)
+
+    print(f"Params: {params}, Accuracy: {score}")
+    
+    if score > best_score:
+        best_score = score
+        best_params = params
+
+print("\nBest Parameters:", best_params)
+print("Best Accuracy:", best_score)
+"""
