@@ -19,6 +19,10 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 
 
+# Personal Libraries
+from src.stratified_continuous_kfold import stratified_continuous_kfold
+
+
 # ----------------------------------------------------------------------
 def grid_search_detailed(hyperparams):
     """
@@ -28,6 +32,15 @@ def grid_search_detailed(hyperparams):
     # Hyperparameters grid
     params_names = list(hyperparams.keys())
     params_comb = list(itertools.product(*hyperparams.values()))
+
+    for hparams in params_comb:
+        model_hparams = dict()
+        for key, value in zip(params_names, hparams):
+            model_hparams[key] = value
+
+        print(model_hparams)
+            
+
 
     
     
