@@ -39,19 +39,12 @@ def grid_search_detailed(hyperparams):
             model_hparams[key] = value
 
         print(model_hparams)
+
             
-
-
-    
-    
-
     return None
 
 
 """
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.ensemble import RandomForestClassifier
 
 # Sample data
 from sklearn.datasets import load_iris
