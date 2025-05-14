@@ -211,3 +211,19 @@ def mape(y_true, y_pred):
         
     return result  
 
+
+
+"""
+def make_lag_features(DataFrame, lag_min, lag_max, columns=None):
+    # Columns selection
+    if(columns == None or columns == "all"):
+        columns = list(DataFrame.columns)        
+
+    # Create lagged variables
+    for col in columns:
+        for lag in range(lag_min, lag_max+1):
+            DataFrame[f"{col}_lag{lag}"] = DataFrame[col].shift(lag) 
+
+                      
+    return DataFrame
+"""
