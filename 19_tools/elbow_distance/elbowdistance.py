@@ -11,7 +11,7 @@ def calc_elbowdistance(pk, pi, pn):
     to a point **pn**.
 
     where:
-    * pi = [x1, y2] (initial)
+    * pi = [x1, y1] (initial)
     * pn = [x2, y2] (last)
     * pk = [x, y]   (k, or the variable point)
 
@@ -23,7 +23,11 @@ def calc_elbowdistance(pk, pi, pn):
                   sqrt((x2 - x1)^2 + (y2 - y1)^2)
 
 
-    LaTex eq: dist = \frac{|(x_{2}-x_{1})(y_{1}-y_{0})-(x_{1}-x_{0})(y_{2}-y_{1})|}{\sqrt{(x_{2}-x_{1})^{2}+(y_{2}-y_{1})^{2}}}
+    LaTex eq:
+    dist = \frac{|(x_{2}-x_{1})(y_{1}-y_{0})-(x_{1}-x_{0})(y_{2}-y_{1})|}{\sqrt{(x_{2}-x_{1})^{2}+(y_{2}-y_{1})^{2}}}
+
+    More info:
+    https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line
 
     """
 
@@ -36,6 +40,7 @@ def calc_elbowdistance(pk, pi, pn):
     numerator = np.abs((x2 - x1) * (y1 - y)) - np.abs((y2 - y1) * (x1 - x))
     denominator = np.sqrt((x2 - x1)**2 + (y2 - y1)**2)
     dist = numerator / denominator
+
 
     return dist
 
